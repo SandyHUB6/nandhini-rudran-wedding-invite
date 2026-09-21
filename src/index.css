@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold-primary: #C5A059;
+    --gold-light: #F5DE9C;
+    --gold-dark: #805F24;
+    --maroon-deep: #2A050B;
+    --ivory-warm: #FAF7F0;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #1A0205;
+  }
+
+  body {
+    background-color: #1A0205;
+    color: #FAF7F0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle gold scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1A0205;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #56101B;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C5A059;
+  }
+}
+
+@layer utilities {
+  /* Metallic Gold Foil text effect */
+  .text-gold-foil {
+    background: linear-gradient(135deg, #FDECB6 0%, #D4AF37 30%, #F5DE9C 50%, #A47F28 75%, #F0D58C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
+  }
+
+  .text-gold-subtle {
+    background: linear-gradient(180deg, #F5DE9C 0%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Border gold foil effect */
+  .border-gold-foil {
+    border-image: linear-gradient(135deg, #F5DE9C, #C5A059, #805F24, #F5DE9C) 1;
+  }
+
+  /* Authentic Handmade Paper Texture */
+  .bg-handmade-paper {
+    background-color: #FAF7F0;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(245, 239, 235, 0.8), rgba(236, 227, 214, 0.95)),
+      radial-gradient(rgba(197, 160, 89, 0.04) 1px, transparent 0);
+    background-size: 100% 100%, 16px 16px;
+  }
+
+  /* Luxury Maroon Silk / Leatherette Texture */
+  .bg-maroon-pattern {
+    background-color: #2A050B;
+    background-image: 
+      radial-gradient(circle at 50% 20%, #4A0E17 0%, #2A050B 65%, #180205 100%);
+  }
+
+  /* 3D Envelope perspective */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Diya ambient glow */
+  .glow-flame {
+    filter: drop-shadow(0 0 10px rgba(255, 180, 50, 0.85)) drop-shadow(0 0 25px rgba(245, 150, 30, 0.45));
+  }
+
+  .glow-gold-box {
+    box-shadow: 0 0 35px -5px rgba(197, 160, 89, 0.3), inset 0 0 25px -10px rgba(197, 160, 89, 0.15);
+  }
+}
