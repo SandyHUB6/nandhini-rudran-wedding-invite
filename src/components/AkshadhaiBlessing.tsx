@@ -172,14 +172,14 @@ export const AkshadhaiBlessing: React.FC = () => {
           {/* Sacred Title */}
           <div className="flex items-center gap-2">
             <span className="w-6 h-[1px] bg-gradient-to-r from-transparent to-[#C5A059]" />
-            <span className="font-tamil text-sm sm:text-base font-bold text-gold-foil">
-              அட்சதை தூவி வாழ்த்துக
+            <span className="font-cinzel text-xs sm:text-sm font-bold text-gold-foil uppercase tracking-wider">
+              Shower Your Sacred Blessings
             </span>
             <span className="w-6 h-[1px] bg-gradient-to-l from-transparent to-[#C5A059]" />
           </div>
 
           <p className="font-cormorant italic text-xs sm:text-sm text-[#FAF7F0]/80 max-w-sm">
-            Tap below to shower sacred turmeric rice & jasmine blossoms to bless Nandhini & Rudran
+            Tap below to shower sacred turmeric rice & jasmine blossoms to bless Rudran & Nandhini
           </p>
 
           {/* Interactive Button */}
@@ -224,16 +224,16 @@ export const AkshadhaiBlessing: React.FC = () => {
           >
             <div className="flex items-center justify-center gap-1.5 mb-1">
               <span className="text-base">🌸</span>
-              <span className="font-tamil font-bold text-sm sm:text-base text-gold-foil">
-                மங்களம் உண்டாகுக!
+              <span className="font-cinzel font-bold text-xs sm:text-sm text-gold-foil uppercase tracking-wider">
+                Auspicious Blessings Bestowed!
               </span>
               <span className="text-base">🌾</span>
             </div>
-            <p className="font-tamil text-xs sm:text-sm text-[#FAF7F0] font-medium leading-relaxed">
-              “நூறாண்டு காலம் நல்வாழ்வு வாழ்க! உங்கள் ஆசிகளுக்கு நன்றி.”
+            <p className="font-cormorant italic text-xs sm:text-sm text-[#FAF7F0] font-medium leading-relaxed">
+              “May they live a long, blissful, and joyful life together! Thank you for your heartfelt blessings.”
             </p>
             <p className="font-cormorant italic text-[11px] sm:text-xs text-[#E5C578] pt-1">
-              Thank you for showering your heartfelt blessings on Nandhini & Rudran
+              Thank you for showering your heartfelt blessings on Rudran & Nandhini
             </p>
           </motion.div>
         )}

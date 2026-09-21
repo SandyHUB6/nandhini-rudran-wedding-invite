@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Auspicious Thirukkural (குறள் 45) - The Sacred Tamil blessing on domestic love and righteousness.
+ * Auspicious Thirukkural (Couplet 45) - The Sacred blessing on domestic love and righteousness.
  */
 export const ThirukkuralBanner: React.FC = () => {
   return (
@@ -20,23 +20,21 @@ export const ThirukkuralBanner: React.FC = () => {
         {/* Sacred Quill / Lotus Icon */}
         <span className="text-sm select-none text-gold-foil">🪷</span>
 
-        {/* The Sacred Kural Couplet in Classical Tamil Calligraphy */}
-        <div className="space-y-1">
-          <p className="font-tamil text-sm sm:text-base md:text-lg font-bold text-gold-foil leading-relaxed tracking-wide drop-shadow-sm">
-            “அன்பும் அறனும் உடைத்தாயின் இல்வாழ்க்கை
+        {/* The Sacred Blessing Verse in English */}
+        <div className="space-y-2">
+          <p className="font-cormorant italic text-lg sm:text-xl md:text-2xl font-bold text-gold-foil leading-relaxed tracking-wide drop-shadow-sm">
+            “When love and virtue grace a married life,
             <br />
-            பண்பும் பயனும் அது.”
+            that union blossoms into its truest character and crowning joy.”
           </p>
-          <p className="font-tamil text-xs text-[#C5A059]/80 font-medium">
-            — திருக்குறள் 45 (இல்வாழ்க்கை)
+          <p className="font-cinzel text-xs uppercase tracking-[0.25em] text-[#C5A059]/85 font-semibold">
+            — Sacred Thirukkural • Couplet 45 (Domestic Harmony)
           </p>
         </div>
 
-        {/* Poetic English Translation */}
+        {/* Poetic Blessing Note */}
         <p className="font-cormorant italic text-xs sm:text-sm text-[#FAF7F0]/75 max-w-md mx-auto pt-1 leading-relaxed">
-          “When love and virtue grace a married life,
-          <br className="hidden sm:inline" />
-          that union blossoms into its truest character and crowning joy.”
+          May their journey of togetherness be blessed with eternal love, happiness, and profound companionship.
         </p>
 
         {/* Ornamental End Flourish */}

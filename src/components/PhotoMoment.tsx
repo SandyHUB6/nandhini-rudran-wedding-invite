@@ -191,7 +191,7 @@ export const PhotoMoment: React.FC = () => {
       ctx.globalAlpha = Math.max(0, p.opacity);
 
       if (p.type === 'rice') {
-        // Sacred turmeric-coated golden rice grain (மஞ்சள் அட்சதை)
+        // Sacred turmeric-coated golden rice grain (Manjal Akshadhai)
         ctx.beginPath();
         ctx.ellipse(0, 0, p.size * 0.42, p.size * 1.35, 0, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
@@ -206,7 +206,7 @@ export const PhotoMoment: React.FC = () => {
         ctx.fillStyle = '#FFFFFF';
         ctx.fill();
       } else if (p.type === 'jasmine') {
-        // Fragrant white Jasmine blossom (மல்லிகைப் பூ)
+        // Fragrant white Jasmine blossom (Malli poo)
         const petRadius = p.size * 0.45;
         // 5 white petals
         for (let j = 0; j < 5; j++) {
@@ -224,7 +224,7 @@ export const PhotoMoment: React.FC = () => {
         ctx.fillStyle = '#FFDD55';
         ctx.fill();
       } else if (p.type === 'rose') {
-        // Crimson South Indian temple rose petal (ரோஜா இதழ்)
+        // Crimson South Indian temple rose petal
         ctx.beginPath();
         ctx.ellipse(0, 0, p.size * 0.75, p.size * 1.05, 0, 0, Math.PI * 2);
         ctx.fillStyle = '#9B1B30';
@@ -294,7 +294,7 @@ export const PhotoMoment: React.FC = () => {
           {/* Couple Photograph Seated Together on Traditional Oonjal */}
           <motion.img
             src={weddingData.secondaryCoupleImage}
-            alt={`${weddingData.brideName} and ${weddingData.groomName}`}
+            alt={`${weddingData.groomName} and ${weddingData.brideName}`}
             initial={{ scale: 1 }}
             animate={{ scale: 1.04 }}
             transition={{
@@ -361,7 +361,7 @@ export const PhotoMoment: React.FC = () => {
           <div className="flex items-center gap-2 text-xs text-[#C5A059]/80 font-cormorant tracking-wide">
             <Heart className="w-3.5 h-3.5 text-[#E5C578] fill-[#E5C578]" />
             <span>
-              {blessingCount} sacred blessings showered upon Nandhini & Rudran
+              {blessingCount} sacred blessings showered upon Rudran & Nandhini
             </span>
           </div>
         </div>
@@ -395,18 +395,18 @@ export const PhotoMoment: React.FC = () => {
 
             <div className="flex items-center justify-center gap-1.5 mb-0.5 pr-4 pl-4">
               <span className="text-sm select-none">🌸</span>
-              <span className="font-arima font-bold text-sm sm:text-base text-gold-foil">
-                மங்களம் உண்டாகுக!
+              <span className="font-cinzel font-bold text-xs sm:text-sm text-gold-foil uppercase tracking-wider">
+                Auspicious Blessings Bestowed!
               </span>
               <span className="text-sm select-none">🌾</span>
             </div>
 
-            <p className="font-tamil text-[11px] sm:text-xs text-[#FAF7F0] font-medium leading-snug">
-              “நூறாண்டு காலம் நல்வாழ்வு வாழ்க! உங்கள் ஆசிகளுக்கு நன்றி.”
+            <p className="font-cormorant italic text-xs sm:text-sm text-[#FAF7F0] font-medium leading-snug">
+              “May they live a long, blissful, and joyful life together! Thank you for your heartfelt blessings.”
             </p>
 
             <p className="font-cormorant italic text-[10px] sm:text-[11px] text-[#E5C578] pt-0.5">
-              Sacred Akshadhai showered on Nandhini & Rudran
+              Sacred Akshadhai showered on Rudran & Nandhini
             </p>
           </motion.div>
         )}

@@ -4,7 +4,7 @@ import { weddingData } from '../config/weddingData';
 import { KolamMotif, PillaiyarSuzhi, MaavilaiThoranam, KuthuVilakku } from './TraditionalDecor';
 
 /**
- * Traditional Royal South Indian Tamil Antique Scroll Patrikai (ராஜ பத்திரிகை / திருமண பட்டயம்)
+ * Traditional Royal South Indian Antique Scroll Patrikai (Royal Wedding Scroll)
  * Features:
  * - Carved antique brass and rosewood rollers with ornate temple kalasam finials
  * - Rich aged warm ivory parchment with woven gold zari brocade selvedges
@@ -183,7 +183,7 @@ const ScrollPortraitMedallion: React.FC<{
         <div className="relative w-full aspect-[4/4.6] sm:aspect-[4/4.8] rounded-t-[115px] rounded-b-md overflow-hidden bg-[#2A050B]/10 shadow-inner">
           <img
             src={imageSrc}
-            alt={`${brideName} & ${groomName}`}
+            alt={`${groomName} & ${brideName}`}
             className="w-full h-full object-cover object-center filter contrast-[1.02] brightness-[0.98] transition-transform duration-700 hover:scale-105"
           />
 
@@ -213,18 +213,18 @@ const ScrollPortraitMedallion: React.FC<{
 
 // 100% Strictly Uniform Ceremony Event Card Component
 interface UniformCeremonyCardProps {
-  englishBadge: string;
-  tamilTitle: string;
-  englishDate: string;
-  tamilDate: string;
+  badge: string;
+  title: string;
+  date: string;
+  subDate?: string;
   time: string;
 }
 
 const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
-  englishBadge,
-  tamilTitle,
-  englishDate,
-  tamilDate,
+  badge,
+  title,
+  date,
+  subDate,
   time,
 }) => {
   return (
@@ -244,26 +244,28 @@ const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#3B0811] border border-[#C5A059] shadow-sm">
           <span className="text-[10px] text-gold-foil font-serif select-none">❖</span>
           <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gold-foil">
-            {englishBadge}
+            {badge}
           </span>
           <span className="text-[10px] text-gold-foil font-serif select-none">❖</span>
         </div>
       </div>
 
-      {/* Ceremony Calligraphic Tamil Title */}
-      <h4 className="relative z-10 font-arima text-2xl sm:text-3xl font-bold text-[#3B0811] tracking-wide my-1.5 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-        {tamilTitle}
+      {/* Ceremony English Title */}
+      <h4 className="relative z-10 font-cinzel text-xl sm:text-2xl font-bold text-[#3B0811] tracking-wide my-1.5 drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
+        {title}
       </h4>
 
       {/* Gregorian Date */}
       <p className="relative z-10 font-cinzel text-sm sm:text-base font-bold text-[#420A12] tracking-wider mt-1">
-        {englishDate}
+        {date}
       </p>
 
-      {/* Auspicious Tamil Date & Day */}
-      <p className="relative z-10 font-tamil text-xs sm:text-sm font-semibold text-[#661622] mt-0.5">
-        {tamilDate}
-      </p>
+      {/* Auspicious Note & Day */}
+      {subDate && (
+        <p className="relative z-10 font-cormorant italic text-xs sm:text-sm font-semibold text-[#661622] mt-0.5">
+          {subDate}
+        </p>
+      )}
 
       {/* Auspicious Time Window (Identical Golden Box) */}
       <div className="relative z-10 mt-3.5 inline-flex items-center justify-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-[#EFE1C6] via-[#FDFBF7] to-[#EFE1C6] border border-[#C5A059] shadow-inner">
@@ -317,7 +319,7 @@ export const DigitalInvitation: React.FC = () => {
       {/* Decorative Section Tag */}
       <div className="relative z-10 mb-6 sm:mb-10 flex flex-col items-center text-center mt-2 sm:mt-0">
         <span className="font-cormorant uppercase tracking-[0.35em] text-xs sm:text-sm text-[#C5A059] font-medium">
-          திருமண அழைப்பிதழ்
+          Auspicious Wedding Patrikai
         </span>
         <h2 className="font-cinzel text-sm sm:text-base text-[#FAF7F0]/85 tracking-[0.25em] uppercase mt-1">
           The Wedding Invitation
@@ -366,12 +368,12 @@ export const DigitalInvitation: React.FC = () => {
               TOP SECTION — INVOCATION & ROYAL GANESHA SEAL
               ======================================================== */}
           <div className="relative z-10 flex flex-col items-center text-center space-y-1.5 pt-1">
-            {/* Pillaiyar Suzhi (உ) */}
+            {/* Sacred Symbol (ॐ) */}
             <PillaiyarSuzhi className="mb-0.5" />
 
-            {/* Sri Vigneshwarar Thunai in Classical Tamil Letterpress */}
-            <h3 className="font-arima text-lg sm:text-xl font-bold text-[#4A0E17] tracking-wider drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-              {weddingData.invocationTamil}
+            {/* Sri Ganesha Invocational Header */}
+            <h3 className="font-cormorant text-lg sm:text-xl font-bold text-[#4A0E17] tracking-wider italic drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
+              {weddingData.invocation}
             </h3>
 
             {/* Royal Line-Art Ganesha Seal */}
@@ -404,8 +406,8 @@ export const DigitalInvitation: React.FC = () => {
             <p className="font-cormorant italic text-sm sm:text-base text-[#70501C] font-semibold tracking-wide">
               With the divine grace of the Almighty and our beloved ancestors
             </p>
-            <p className="font-arima text-sm sm:text-base text-[#3B0811] leading-relaxed max-w-md mx-auto font-bold">
-              எங்கள் இல்லத் திருமண நன்னாளில் தங்களை தங்கள் குடும்பத்தினருடன் அன்போடு அழைக்கின்றோம்
+            <p className="font-cormorant italic text-base sm:text-lg text-[#3B0811] leading-relaxed max-w-md mx-auto font-medium">
+              We cordially invite you and your family to celebrate the auspicious wedding of our children and shower your heartfelt blessings
             </p>
           </div>
 
@@ -421,28 +423,19 @@ export const DigitalInvitation: React.FC = () => {
           </div>
 
           {/* ========================================================
-              COUPLE NAMES — ROYAL PATRIYEGA TYPOGRAPHY
+              COUPLE NAMES — ROYAL PATRIYEGA TYPOGRAPHY (Groom & Bride Swapped)
               ======================================================== */}
           <div className="relative z-10 text-center space-y-2 py-4 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
-            {/* Bride Name */}
+            {/* Groom Name */}
             <div className="space-y-1">
-              {/* Title of Name in Both English and Tamil */}
-              <div className="inline-flex items-center justify-center gap-2 px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
-                <span className="font-arima text-xs sm:text-sm font-bold text-[#805F24]">
-                  மணமகள் : செல்வி.
-                </span>
-                <span className="text-[#C5A059] text-xs font-serif select-none">•</span>
+              <div className="inline-flex items-center justify-center px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
                 <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#805F24]">
-                  Bride : Selvi
+                  Groom • Selvan
                 </span>
               </div>
-
               <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-                {weddingData.brideName}
+                {weddingData.groomName}
               </h1>
-              <p className="font-arima text-lg sm:text-xl font-bold text-[#7A551A] mt-0.5">
-                {weddingData.brideTamil}
-              </p>
             </div>
 
             {/* Sacred Lotus Knot */}
@@ -454,25 +447,16 @@ export const DigitalInvitation: React.FC = () => {
               <span className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
             </div>
 
-            {/* Groom Name */}
+            {/* Bride Name */}
             <div className="space-y-1">
-              {/* Title of Name in Both English and Tamil */}
-              <div className="inline-flex items-center justify-center gap-2 px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
-                <span className="font-arima text-xs sm:text-sm font-bold text-[#805F24]">
-                  மணமகன் : செல்வன்.
-                </span>
-                <span className="text-[#C5A059] text-xs font-serif select-none">•</span>
+              <div className="inline-flex items-center justify-center px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
                 <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#805F24]">
-                  Groom : Selvan
+                  Bride • Selvi
                 </span>
               </div>
-
               <h2 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-                {weddingData.groomName}
+                {weddingData.brideName}
               </h2>
-              <p className="font-arima text-lg sm:text-xl font-bold text-[#7A551A] mt-0.5">
-                {weddingData.groomTamil}
-              </p>
             </div>
 
             <p className="font-cormorant text-xs sm:text-sm uppercase tracking-[0.22em] text-[#805F24] font-bold pt-1.5">
@@ -495,10 +479,10 @@ export const DigitalInvitation: React.FC = () => {
 
             {/* Ceremony 1: Engagement Ceremony */}
             <UniformCeremonyCard
-              englishBadge="ENGAGEMENT CEREMONY"
-              tamilTitle="நிச்சயதார்த்த வைபவம்"
-              englishDate="Tuesday, November 10, 2026"
-              tamilDate="செவ்வாய்க்கிழமை, நவம்பர் 10, 2026"
+              badge="ENGAGEMENT CEREMONY"
+              title="Engagement & Ring Ceremony"
+              date="Tuesday, November 10, 2026"
+              subDate="Auspicious Evening Muhurtham"
               time="6:00 PM – 9:00 PM IST"
             />
 
@@ -511,10 +495,10 @@ export const DigitalInvitation: React.FC = () => {
 
             {/* Ceremony 2: Holy Subha Muhurtham */}
             <UniformCeremonyCard
-              englishBadge="HOLY SUBHA MUHURTHAM"
-              tamilTitle="புனித சுப முஹூர்த்தம்"
-              englishDate="Wednesday, November 11, 2026"
-              tamilDate="புதன்கிழமை, நவம்பர் 11, 2026 (கார்த்திகை 25)"
+              badge="HOLY SUBHA MUHURTHAM"
+              title="Sacred Subha Muhurtham"
+              date="Wednesday, November 11, 2026"
+              subDate="Auspicious Morning Muhurtham (Aippasi 25)"
               time="9:00 AM – 10:00 AM IST"
             />
 
@@ -523,13 +507,13 @@ export const DigitalInvitation: React.FC = () => {
               <div className="absolute inset-1.5 rounded-lg border border-[#8B1E2F]/20 pointer-events-none" />
 
               <p className="relative z-10 font-cinzel text-[11px] sm:text-xs uppercase tracking-[0.22em] font-bold text-[#805F24] mb-1">
-                Kalyana Mandapam (திருமண மண்டபம்)
+                Kalyana Mandapam • Wedding Venue
               </p>
-              <h3 className="relative z-10 font-arima text-xl sm:text-2xl font-bold text-[#3B0811]">
-                {weddingData.venueTamil}
-              </h3>
-              <p className="relative z-10 font-cinzel text-xs sm:text-sm font-bold text-[#420A12] mt-0.5">
+              <h3 className="relative z-10 font-cinzel text-xl sm:text-2xl font-bold text-[#3B0811]">
                 {weddingData.venueName}
+              </h3>
+              <p className="relative z-10 font-cormorant italic text-xs sm:text-sm font-semibold text-[#805F24] mt-0.5">
+                Marriage Hall & Convention Centre
               </p>
               <p className="relative z-10 font-cormorant text-xs sm:text-sm text-[#420A12]/85 max-w-sm mx-auto leading-relaxed pt-1">
                 {weddingData.location}
@@ -539,8 +523,8 @@ export const DigitalInvitation: React.FC = () => {
 
           {/* Traditional Closing Blessing Note */}
           <div className="relative z-10 pt-6 sm:pt-8 text-center border-t border-[#C5A059]/50 mt-6">
-            <p className="font-arima text-base sm:text-lg text-[#5A101C] font-bold italic drop-shadow-sm">
-              தங்கள் வரவு நல்வரவாகுக • அன்புடன் அழைக்கின்றோம்
+            <p className="font-cormorant text-base sm:text-lg text-[#5A101C] font-bold italic drop-shadow-sm">
+              Your gracious presence is our greatest joy • Warmest Welcome
             </p>
             <p className="font-cormorant uppercase tracking-[0.25em] text-xs text-[#805F24] font-semibold pt-1">
               With Best Compliments from Family & Friends

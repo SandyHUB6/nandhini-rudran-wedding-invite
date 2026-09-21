@@ -97,8 +97,8 @@ export const InvitationReveal: React.FC<InvitationRevealProps> = ({
             {/* Inner Content */}
             <div className="pt-2">
               <PillaiyarSuzhi />
-              <p className="font-tamil text-xs sm:text-sm font-semibold text-[#805F24] mt-1">
-                {weddingData.invocationTamil}
+              <p className="font-cormorant italic text-xs sm:text-sm font-semibold text-[#805F24] mt-1">
+                {weddingData.invocation}
               </p>
             </div>
 
@@ -107,11 +107,11 @@ export const InvitationReveal: React.FC<InvitationRevealProps> = ({
                 Together with their families
               </p>
               <h3 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#2A050B] tracking-wide">
-                {weddingData.brideName}
+                {weddingData.groomName}
               </h3>
               <p className="font-cormorant italic text-lg text-[#805F24]">&</p>
               <h4 className="font-cinzel text-2xl sm:text-3xl font-bold text-[#2A050B] tracking-wide">
-                {weddingData.groomName}
+                {weddingData.brideName}
               </h4>
               <p className="font-cormorant text-xs sm:text-sm text-[#56101B] tracking-widest uppercase pt-2">
                 cordially invite you
@@ -132,7 +132,7 @@ export const InvitationReveal: React.FC<InvitationRevealProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#2A050B] to-[#3B0811] rounded-b-xl border-t border-[#C5A059]/50 shadow-lg z-20 pointer-events-none flex items-center justify-center">
             {/* Front gold seal motif */}
             <div className="w-10 h-10 rounded-full border border-[#C5A059] bg-[#420A12] flex items-center justify-center shadow-gold-subtle -mt-16">
-              <span className="font-serif text-sm text-gold-foil">உ</span>
+              <span className="font-serif text-sm text-gold-foil">ॐ</span>
             </div>
           </div>
 

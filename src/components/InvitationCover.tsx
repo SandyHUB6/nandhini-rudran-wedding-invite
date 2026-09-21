@@ -86,14 +86,14 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
             {/* Auspicious Pillaiyar Suzhi */}
             <PillaiyarSuzhi />
 
-            {/* Invocational Header: ஸ்ரீ விக்னேஸ்வரர் துணை */}
+            {/* Invocational Header */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 1 }}
-              className="font-tamil text-sm sm:text-base font-semibold text-gold-foil tracking-wide"
+              className="font-cormorant italic text-sm sm:text-base font-semibold text-gold-foil tracking-wide"
             >
-              {weddingData.invocationTamil}
+              {weddingData.invocation}
             </motion.p>
 
             {/* Subtle Divider with Diamond Accent */}
@@ -103,24 +103,17 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
               <span className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
             </div>
 
-            {/* Couple Names - The Crown of the Invitation */}
+            {/* Couple Names - The Crown of the Invitation (Groom & Bride Swapped) */}
             <div className="py-2 space-y-2">
               <div className="space-y-0.5">
-                <div className="inline-flex items-center justify-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#420A12]/60 border border-[#C5A059]/40 mb-1">
-                  <span className="font-tamil text-[10px] sm:text-xs text-[#E5C578] font-medium">
-                    மணமகள் : செல்வி.
-                  </span>
-                  <span className="text-[#C5A059] text-[10px]">•</span>
-                  <span className="font-cinzel text-[9px] sm:text-[10px] text-[#E5C578] font-bold tracking-wider uppercase">
-                    Bride : Selvi
+                <div className="inline-flex items-center justify-center px-3 py-0.5 rounded-full bg-[#420A12]/60 border border-[#C5A059]/40 mb-1">
+                  <span className="font-cinzel text-[9px] sm:text-[10px] text-[#E5C578] font-bold tracking-widest uppercase">
+                    Groom
                   </span>
                 </div>
                 <h1 className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-gold-foil">
-                  {weddingData.brideName}
+                  {weddingData.groomName}
                 </h1>
-                <p className="font-tamil text-xs sm:text-sm text-[#E5C578] font-medium">
-                  {weddingData.brideTamil}
-                </p>
               </div>
 
               <div className="flex items-center justify-center gap-3 my-1">
@@ -132,31 +125,21 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
               </div>
 
               <div className="space-y-0.5">
-                <div className="inline-flex items-center justify-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#420A12]/60 border border-[#C5A059]/40 mb-1">
-                  <span className="font-tamil text-[10px] sm:text-xs text-[#E5C578] font-medium">
-                    மணமகன் : செல்வன்.
-                  </span>
-                  <span className="text-[#C5A059] text-[10px]">•</span>
-                  <span className="font-cinzel text-[9px] sm:text-[10px] text-[#E5C578] font-bold tracking-wider uppercase">
-                    Groom : Selvan
+                <div className="inline-flex items-center justify-center px-3 py-0.5 rounded-full bg-[#420A12]/60 border border-[#C5A059]/40 mb-1">
+                  <span className="font-cinzel text-[9px] sm:text-[10px] text-[#E5C578] font-bold tracking-widest uppercase">
+                    Bride
                   </span>
                 </div>
                 <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-gold-foil">
-                  {weddingData.groomName}
+                  {weddingData.brideName}
                 </h2>
-                <p className="font-tamil text-xs sm:text-sm text-[#E5C578] font-medium">
-                  {weddingData.groomTamil}
-                </p>
               </div>
             </div>
 
-            {/* Tamil Subtitle and English Subtitle */}
+            {/* English Invitation Subtitle */}
             <div className="space-y-0.5 pt-1">
-              <p className="font-tamil text-xs sm:text-sm text-[#FAF7F0]/80 tracking-widest uppercase">
-                {weddingData.invitationTamilSubtitle}
-              </p>
               <p className="font-cormorant uppercase tracking-[0.25em] text-xs sm:text-sm text-[#C5A059]/90 font-medium">
-                {weddingData.invitationEnglishSubtitle}
+                {weddingData.invitationSubtitle}
               </p>
             </div>
 
@@ -179,8 +162,8 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
                 <div className="absolute inset-0 bg-gold-shimmer opacity-0 group-hover/btn:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                 {/* Wax seal inspired gold emblem */}
-                <span className="w-5 h-5 rounded-full border border-[#F5DE9C] flex items-center justify-center text-[10px] text-gold-foil bg-[#805F24]/30 font-serif">
-                  உ
+                <span className="w-5 h-5 rounded-full border border-[#F5DE9C] flex items-center justify-center text-[11px] text-gold-foil bg-[#805F24]/30 font-serif">
+                  ॐ
                 </span>
 
                 <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-[0.2em] text-gold-foil">

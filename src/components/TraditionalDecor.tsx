@@ -331,12 +331,12 @@ export const OrnamentalCorner: React.FC<{
   );
 };
 
-// Auspicious Ganesha / Pillaiyar Suzhi (உ) Traditional Symbol
+// Auspicious Sacred Symbol (ॐ)
 export const PillaiyarSuzhi: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
     <div className={`inline-flex flex-col items-center select-none ${className}`}>
-      <span className="font-tamil font-bold text-xl md:text-2xl text-gold-foil tracking-wider">
-        உ
+      <span className="font-serif font-bold text-xl md:text-2xl text-gold-foil tracking-wider">
+        ॐ
       </span>
       <div className="flex items-center gap-1.5 mt-0.5">
         <div className="w-4 h-[1px] bg-gradient-to-r from-transparent to-[#C5A059]" />

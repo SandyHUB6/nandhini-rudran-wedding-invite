@@ -1,5 +1,5 @@
 /**
- * Pure Web Audio API Synthesizer for an authentic, resonant South Indian Brass Temple Bell (கோவில் மணி ஓசை).
+ * Pure Web Audio API Synthesizer for an authentic, resonant South Indian Brass Temple Bell Chime.
  * Plays an auspicious metallic chime with rich inharmonic overtones and smooth exponential decay.
  */
 export const playTempleBellChime = () => {

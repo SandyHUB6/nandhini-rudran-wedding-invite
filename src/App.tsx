@@ -70,7 +70,7 @@ export function App() {
             {/* 1. Traditional Royal Antique Scroll Patrikai (Framed by Mandapam Thoranam & Kuthu Vilakku) */}
             <DigitalInvitation />
 
-            {/* 2. Auspicious Thirukkural (குறள் 45) Blessing */}
+            {/* 2. Auspicious Thirukkural (Couplet 45) Blessing */}
             <ThirukkuralBanner />
 
             {/* 3. Minimal Stationery Countdown */}

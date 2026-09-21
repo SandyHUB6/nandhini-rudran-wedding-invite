@@ -116,8 +116,8 @@ export const Countdown: React.FC = () => {
         </motion.div>
 
         {/* Auspicious Blessing Subtext */}
-        <p className="font-tamil text-xs sm:text-sm text-[#C5A059]/80 italic">
-          மங்களகரமான நல்ல நேரத்தை எதிர்நோக்கி...
+        <p className="font-cormorant text-sm sm:text-base text-[#C5A059]/85 italic tracking-wide">
+          Awaiting the sacred and auspicious hour...
         </p>
 
       </div>

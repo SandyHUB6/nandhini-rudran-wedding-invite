@@ -41,23 +41,24 @@ export const PetalCanvas: React.FC<{
 
     window.addEventListener('resize', handleResize);
 
-    const count = intensity === 'gentle' ? 24 : 45;
+    // Reduced count: light and subtle whisper of petals
+    const count = intensity === 'gentle' ? 7 : 12;
     const petals: Petal[] = [];
 
-    const petalTypes: ('jasmine' | 'rose' | 'gold')[] = ['jasmine', 'jasmine', 'jasmine', 'rose', 'gold'];
+    const petalTypes: ('jasmine' | 'rose' | 'gold')[] = ['jasmine', 'jasmine', 'rose', 'gold'];
 
     for (let i = 0; i < count; i++) {
       petals.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 8 + 6,
-        speedY: Math.random() * 0.7 + 0.4,
-        speedX: Math.random() * 0.4 - 0.2,
+        size: Math.random() * 3 + 3.5, // 3.5px to 6.5px - dainty & delicate
+        speedY: Math.random() * 0.25 + 0.15, // Slow, weightless drift
+        speedX: Math.random() * 0.2 - 0.1,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 1.2,
-        swayAmplitude: Math.random() * 1.5 + 0.8,
+        rotationSpeed: (Math.random() - 0.5) * 0.8,
+        swayAmplitude: Math.random() * 0.8 + 0.4,
         swayOffset: Math.random() * Math.PI * 2,
-        opacity: Math.random() * 0.4 + 0.5,
+        opacity: Math.random() * 0.25 + 0.2, // 0.20 to 0.45 - soft & translucent
         type: petalTypes[Math.floor(Math.random() * petalTypes.length)],
       });
     }
@@ -65,7 +66,7 @@ export const PetalCanvas: React.FC<{
     let time = 0;
 
     const render = () => {
-      time += 0.015;
+      time += 0.01;
       ctx.clearRect(0, 0, width, height);
 
       petals.forEach((p) => {
@@ -74,12 +75,12 @@ export const PetalCanvas: React.FC<{
         p.rotation += p.rotationSpeed;
 
         // Reset when fallen off screen
-        if (p.y > height + 20) {
-          p.y = -20;
+        if (p.y > height + 15) {
+          p.y = -15;
           p.x = Math.random() * width;
         }
-        if (p.x > width + 20) p.x = -20;
-        if (p.x < -20) p.x = width + 20;
+        if (p.x > width + 15) p.x = -15;
+        if (p.x < -15) p.x = width + 15;
 
         ctx.save();
         ctx.translate(p.x, p.y);
@@ -87,41 +88,41 @@ export const PetalCanvas: React.FC<{
         ctx.globalAlpha = p.opacity;
 
         if (p.type === 'jasmine') {
-          // Fresh white Jasmine (Malli poo) petal with subtle ivory-green undertone
+          // Delicate translucent Jasmine petal
           ctx.beginPath();
-          ctx.ellipse(0, 0, p.size * 0.7, p.size * 1.1, 0, 0, Math.PI * 2);
+          ctx.ellipse(0, 0, p.size * 0.65, p.size * 1.05, 0, 0, Math.PI * 2);
           const grad = ctx.createRadialGradient(0, 0, 1, 0, 0, p.size);
           grad.addColorStop(0, '#FFFFFF');
-          grad.addColorStop(0.7, '#FFFBF0');
-          grad.addColorStop(1, '#E8E1C7');
+          grad.addColorStop(0.7, '#FFFDF8');
+          grad.addColorStop(1, '#EAE3CD');
           ctx.fillStyle = grad;
           ctx.fill();
 
-          // Tiny pale yellow center dot
+          // Delicate pale gold center dot
           ctx.beginPath();
-          ctx.arc(0, p.size * 0.4, p.size * 0.15, 0, Math.PI * 2);
+          ctx.arc(0, p.size * 0.35, p.size * 0.12, 0, Math.PI * 2);
           ctx.fillStyle = '#FFE680';
           ctx.fill();
         } else if (p.type === 'rose') {
-          // Rich crimson South Indian rose petal
+          // Delicate soft crimson rose petal
           ctx.beginPath();
-          ctx.moveTo(0, -p.size * 0.8);
-          ctx.bezierCurveTo(p.size * 0.8, -p.size * 0.8, p.size, p.size * 0.6, 0, p.size);
-          ctx.bezierCurveTo(-p.size, p.size * 0.6, -p.size * 0.8, -p.size * 0.8, 0, -p.size * 0.8);
+          ctx.moveTo(0, -p.size * 0.7);
+          ctx.bezierCurveTo(p.size * 0.7, -p.size * 0.7, p.size * 0.9, p.size * 0.5, 0, p.size * 0.9);
+          ctx.bezierCurveTo(-p.size * 0.9, p.size * 0.5, -p.size * 0.7, -p.size * 0.7, 0, -p.size * 0.7);
           const grad = ctx.createLinearGradient(0, -p.size, 0, p.size);
-          grad.addColorStop(0, '#A61E34');
-          grad.addColorStop(0.6, '#821023');
-          grad.addColorStop(1, '#4E0713');
+          grad.addColorStop(0, '#C23B50');
+          grad.addColorStop(0.6, '#9E1C30');
+          grad.addColorStop(1, '#6E0E1F');
           ctx.fillStyle = grad;
           ctx.fill();
         } else {
-          // Antique Gold Foil Flake
+          // Dainty Champagne Gold Flake
           ctx.beginPath();
-          ctx.ellipse(0, 0, p.size * 0.5, p.size * 0.8, Math.PI / 4, 0, Math.PI * 2);
+          ctx.ellipse(0, 0, p.size * 0.45, p.size * 0.7, Math.PI / 4, 0, Math.PI * 2);
           const grad = ctx.createLinearGradient(-p.size, -p.size, p.size, p.size);
-          grad.addColorStop(0, '#FFF2B2');
-          grad.addColorStop(0.5, '#D4AF37');
-          grad.addColorStop(1, '#8C6819');
+          grad.addColorStop(0, '#FFF6D6');
+          grad.addColorStop(0.5, '#E5C578');
+          grad.addColorStop(1, '#A07E2E');
           ctx.fillStyle = grad;
           ctx.fill();
         }
@@ -144,8 +145,10 @@ export const PetalCanvas: React.FC<{
     <canvas
       ref={canvasRef}
       className={`fixed inset-0 pointer-events-none z-30 transition-opacity duration-1000 ${
-        active ? 'opacity-100' : 'opacity-0'
+        active ? 'opacity-70' : 'opacity-0'
       } ${className}`}
     />
   );
 };
+
+export default PetalCanvas;

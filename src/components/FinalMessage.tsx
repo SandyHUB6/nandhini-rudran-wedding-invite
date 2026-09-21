@@ -29,12 +29,12 @@ export const FinalMessage: React.FC = () => {
             <br />
             we begin our forever.”
           </p>
-          <p className="font-tamil text-xs sm:text-sm text-[#C5A059] pt-1">
-            தங்கள் ஆசிகளோடு நாங்கள் தொடங்கும் இனிய இல்லற வாழ்வு
+          <p className="font-cormorant italic text-sm sm:text-base text-[#C5A059] pt-1">
+            Beginning our joyful journey of togetherness with your heartfelt blessings
           </p>
         </motion.div>
 
-        {/* Delicate Royal Monogram / Couple Signature */}
+        {/* Delicate Royal Monogram / Couple Signature (Groom & Bride Swapped) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -43,11 +43,11 @@ export const FinalMessage: React.FC = () => {
           className="flex items-center justify-center gap-3 py-3 border-y border-[#C5A059]/30 w-full max-w-xs"
         >
           <span className="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-gold-foil">
-            {weddingData.brideName.split(' ')[0]}
+            {weddingData.groomName.split(' ')[0]}
           </span>
           <span className="font-serif text-sm text-[#E5C578] opacity-80">♥</span>
           <span className="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-gold-foil">
-            {weddingData.groomName.split(' ')[0]}
+            {weddingData.brideName.split(' ')[0]}
           </span>
         </motion.div>
 

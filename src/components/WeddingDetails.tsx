@@ -13,7 +13,7 @@ export const WeddingDetails: React.FC = () => {
     }
   }, []);
 
-  const whatsappShareText = `*Wedding Invitation | நந்தினி & ருத்ரன்* 💍\n\nWith immense joy, Nandhini Gouthaman & Rudran Veerabadran cordially invite you to celebrate their traditional South Indian wedding!\n\n✨ *Engagement Ceremony*: Tuesday, Nov 10, 2026 (6:00 PM – 9:00 PM IST)\n🌸 *Holy Subha Muhurtham*: Wednesday, Nov 11, 2026 (9:00 AM – 10:00 AM IST)\n📍 *Venue*: Soudamman Kovil Kalyana Mandapam, Bodinayakanur\n\nView our wedding invitation: ${currentUrl}`;
+  const whatsappShareText = `*Wedding Invitation | Rudran & Nandhini* 💍\n\nWith immense joy, Rudran Veerabadran & Nandhini Gouthaman cordially invite you to celebrate their traditional wedding!\n\n✨ *Engagement Ceremony*: Tuesday, Nov 10, 2026 (6:00 PM – 9:00 PM IST)\n🌸 *Holy Subha Muhurtham*: Wednesday, Nov 11, 2026 (9:00 AM – 10:00 AM IST)\n📍 *Venue*: Soudamman Kovil Kalyana Mandapam, Bodinayakanur\n\nView our wedding invitation: ${currentUrl}`;
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappShareText)}`;
   // Generate Google Calendar Link
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
@@ -27,7 +27,7 @@ export const WeddingDetails: React.FC = () => {
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Nandhini & Rudran Wedding//EN',
+      'PRODID:-//Rudran & Nandhini Wedding//EN',
       'BEGIN:VEVENT',
       `SUMMARY:${weddingData.calendarEvent.title}`,
       `DESCRIPTION:${weddingData.calendarEvent.description}`,
@@ -42,7 +42,7 @@ export const WeddingDetails: React.FC = () => {
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Nandhini-Rudran-Wedding.ics');
+    link.setAttribute('download', 'Rudran-Nandhini-Wedding.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -70,7 +70,7 @@ export const WeddingDetails: React.FC = () => {
         {/* Section Header */}
         <div className="space-y-1.5">
           <span className="font-cormorant uppercase tracking-[0.35em] text-xs sm:text-sm text-[#C5A059] font-medium">
-            திருமண மண்டபம் • கல்யாண மஹால்
+            WEDDING VENUE • MARRIAGE HALL
           </span>
           <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-gold-foil">
             VENUE & LOCATION
@@ -78,13 +78,13 @@ export const WeddingDetails: React.FC = () => {
           <div className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto mt-2" />
         </div>
 
-        {/* Venue Title & Tamil Script */}
+        {/* Venue Title & Subtitle */}
         <div className="space-y-1 pt-1">
           <h3 className="font-cinzel text-xl sm:text-2xl md:text-3xl font-bold text-[#FAF7F0] tracking-wide">
             {weddingData.venueName}
           </h3>
-          <p className="font-tamil text-base sm:text-lg font-bold text-gold-foil">
-            {weddingData.venueTamil}
+          <p className="font-cormorant italic text-base sm:text-lg text-gold-foil">
+            Marriage Hall & Convention Centre
           </p>
         </div>
 

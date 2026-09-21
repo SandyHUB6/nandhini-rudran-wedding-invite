@@ -89,11 +89,8 @@ export const WeddingHero: React.FC = () => {
         >
           <div>
             <h1 className="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gold-foil uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">
-              {weddingData.brideName}
+              {weddingData.groomName}
             </h1>
-            <p className="font-tamil text-sm sm:text-base text-[#C5A059] mt-1 font-medium">
-              {weddingData.brideTamil}
-            </p>
           </div>
 
           <div className="flex items-center justify-center gap-4 my-2">
@@ -101,16 +98,13 @@ export const WeddingHero: React.FC = () => {
             <p className="font-cormorant italic text-2xl sm:text-3xl text-[#E5C578] font-light">
               &
             </p>
-            <span className="h-[1px] w-14 sm:w-24 md:w-32 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
+            <span className="h-[1px] w-14 sm:w-24 md:w-32 bg-gradient-to-l from-transparent via-[#C5A059] to-transparent" />
           </div>
 
           <div>
             <h2 className="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gold-foil uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">
-              {weddingData.groomName}
+              {weddingData.brideName}
             </h2>
-            <p className="font-tamil text-sm sm:text-base text-[#C5A059] mt-1 font-medium">
-              {weddingData.groomTamil}
-            </p>
           </div>
         </motion.div>
 
