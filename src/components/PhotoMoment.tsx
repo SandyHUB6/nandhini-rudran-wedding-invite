@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Heart, X } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
@@ -367,50 +368,84 @@ export const PhotoMoment: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Floating Sacred Blessing Toast (Mobile-Responsive & Tap-to-Dismiss) */}
-      <AnimatePresence>
-        {showToast && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.94 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 15, scale: 0.95 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            onClick={() => setShowToast(false)}
-            className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-3 sm:px-6 sm:py-3.5 rounded-2xl bg-gradient-to-r from-[#2A050B] via-[#4A0E17] to-[#2A050B] border border-[#C5A059] shadow-[0_10px_35px_rgba(0,0,0,0.85)] text-center w-[calc(100%-2rem)] max-w-[360px] sm:max-w-md cursor-pointer backdrop-blur-md"
-            role="alert"
-            aria-live="polite"
-          >
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowToast(false);
-              }}
-              className="absolute top-2 right-2 p-1 rounded-full text-[#E5C578]/70 hover:text-[#FAF7F0] hover:bg-[#FAF7F0]/10 transition-colors"
-              aria-label="Dismiss toast"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
+      {/* Centered Sacred Blessing Toast (Responsive via Media Queries & Rendered in Portal) */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {showToast && (
+              <div
+                className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 pointer-events-none"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="blessing-toast-title"
+              >
+                {/* Subtle dismiss backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  onClick={() => setShowToast(false)}
+                  className="fixed inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-auto"
+                  aria-hidden="true"
+                />
 
-            <div className="flex items-center justify-center gap-1.5 mb-0.5 pr-4 pl-4">
-              <span className="text-sm select-none">🌸</span>
-              <span className="font-cinzel font-bold text-xs sm:text-sm text-gold-foil uppercase tracking-wider">
-                Auspicious Blessings Bestowed!
-              </span>
-              <span className="text-sm select-none">🌾</span>
-            </div>
+                {/* Centered Modal Toast Card with Media Query Responsiveness */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.88, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="pointer-events-auto relative z-10 w-[92vw] max-w-[340px] sm:max-w-[420px] md:max-w-[480px] rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 bg-gradient-to-b from-[#3B0811] via-[#2A050B] to-[#1A0205] border-2 border-[#C5A059] shadow-[0_0_50px_rgba(197,160,89,0.3),0_20px_50px_rgba(0,0,0,0.95)] text-center cursor-default backdrop-blur-md"
+                >
+                  {/* Inner Fine Gold Border */}
+                  <div className="absolute inset-1.5 sm:inset-2 rounded-xl sm:rounded-2xl border border-[#C5A059]/40 pointer-events-none" />
 
-            <p className="font-cormorant italic text-xs sm:text-sm text-[#FAF7F0] font-medium leading-snug">
-              “May they live a long, blissful, and joyful life together! Thank you for your heartfelt blessings.”
-            </p>
+                  {/* Close button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowToast(false)}
+                    className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 p-1.5 rounded-full text-[#E5C578]/80 hover:text-[#FAF7F0] hover:bg-[#FAF7F0]/10 transition-colors z-20"
+                    aria-label="Dismiss toast"
+                  >
+                    <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
 
-            <p className="font-cormorant italic text-[10px] sm:text-[11px] text-[#E5C578] pt-0.5">
-              Sacred Akshadhai showered on Rudran & Nandhini
-            </p>
-          </motion.div>
+                  {/* Toast Icon & Header */}
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 pr-6 pl-6">
+                    <span className="text-base sm:text-xl select-none">🌸</span>
+                    <h3
+                      id="blessing-toast-title"
+                      className="font-cinzel font-bold text-xs sm:text-sm md:text-base text-gold-foil uppercase tracking-wider"
+                    >
+                      Auspicious Blessings Bestowed!
+                    </h3>
+                    <span className="text-base sm:text-xl select-none">🌾</span>
+                  </div>
+
+                  {/* Blessing Quote */}
+                  <p className="font-cormorant italic text-sm sm:text-base md:text-lg text-[#FAF7F0] font-medium leading-relaxed my-2 px-1">
+                    “May they live a long, blissful, and joyful life together! Thank you for your heartfelt blessings.”
+                  </p>
+
+                  {/* Decorative Divider */}
+                  <div className="flex items-center justify-center gap-2 w-28 sm:w-36 mx-auto my-2 opacity-60">
+                    <span className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-[#C5A059]" />
+                    <span className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+                    <span className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-[#C5A059]" />
+                  </div>
+
+                  {/* Couple Subtext */}
+                  <p className="font-cormorant italic text-xs sm:text-sm text-[#E5C578] pt-0.5">
+                    Sacred Akshadhai showered on Rudran & Nandhini
+                  </p>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 };
