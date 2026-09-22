@@ -43,6 +43,29 @@ export interface WeddingConfig {
     startDate: string; // YYYYMMDDTHHMMSSZ
     endDate: string;   // YYYYMMDDTHHMMSSZ
   };
+  family?: {
+    groomParents: string;
+    brideParents: string;
+    grandparents?: string;
+    note: string;
+  };
+}
+
+export interface ThamboolamItem {
+  id: string;
+  title: string;
+  tamilTitle: string;
+  significance: string;
+  culturalNote: string;
+  symbol: string;
+}
+
+export interface BlessingItem {
+  id: string;
+  guestName: string;
+  message: string;
+  timestamp: string;
+  avatarColor?: string;
 }
 
 export const weddingData: WeddingConfig = {
@@ -100,4 +123,108 @@ export const weddingData: WeddingConfig = {
     startDate: "20261111T033000Z", // 9:00 AM IST = 3:30 AM UTC
     endDate: "20261111T043000Z",   // 10:00 AM IST = 4:30 AM UTC
   },
+  family: {
+    groomParents: "Mr. Veerabadran & Mrs. Soundaravalli",
+    brideParents: "Mr. Gouthaman & Mrs. Shanthi",
+    grandparents: "With the eternal blessings of our revered ancestors & family elders",
+    note: "Cordially invite you to share in the joy and celebrations of our children's wedding.",
+  },
 };
+
+export const thamboolamItemsData: ThamboolamItem[] = [
+  {
+    id: "betel-leaves",
+    title: "Betel Leaves",
+    tamilTitle: "Vetrillai",
+    significance: "A symbol of prosperity, auspiciousness, and well-being.",
+    culturalNote: "Exchanged in all sacred Hindu rituals to invoke divine grace, good health, and mutual respect.",
+    symbol: "🍃",
+  },
+  {
+    id: "coconut",
+    title: "Coconut",
+    tamilTitle: "Thengai",
+    significance: "A symbol of completeness, purity, and auspicious beginnings.",
+    culturalNote: "Represents selflessness and the pure divine essence within, blessed by the holy trinity.",
+    symbol: "🥥",
+  },
+  {
+    id: "turmeric",
+    title: "Turmeric",
+    tamilTitle: "Manjal",
+    significance: "Traditionally associated with purity, prosperity, and good fortune.",
+    culturalNote: "An essential mangala dravya that sanctifies the marital bond with vibrant solar energy.",
+    symbol: "✨",
+  },
+  {
+    id: "kumkum",
+    title: "Kumkum",
+    tamilTitle: "Kungumam",
+    significance: "A traditional symbol of auspiciousness and celebration.",
+    culturalNote: "Applied on the forehead as a blessing of divine feminine grace, protection, and long life.",
+    symbol: "🔴",
+  },
+  {
+    id: "flowers",
+    title: "Jasmine & Marigold Flowers",
+    tamilTitle: "Malli & Sevvanthi",
+    significance: "A symbol of beauty, love, joy, and new beginnings.",
+    culturalNote: "Fragrant fresh blooms that sweeten the sacred path of the bride and groom together.",
+    symbol: "🌸",
+  },
+  {
+    id: "rice",
+    title: "Akshadhai (Sacred Rice)",
+    tamilTitle: "Akshadhai",
+    significance: "A symbol of abundance, prosperity, and blessings.",
+    culturalNote: "Turmeric-infused unbroken rice grains showered upon the couple for an everlasting union.",
+    symbol: "🌾",
+  },
+  {
+    id: "sweets",
+    title: "Traditional Sweets",
+    tamilTitle: "Inippu",
+    significance: "A wish for sweetness, happiness, and joyful moments in life.",
+    culturalNote: "Offered to guests as a heartfelt gesture of hospitality and sweetest beginnings.",
+    symbol: "🍯",
+  },
+  {
+    id: "coin",
+    title: "Auspicious Coin",
+    tamilTitle: "Kaasu",
+    significance: "A traditional symbol of prosperity and abundance.",
+    culturalNote: "Invokes the eternal blessings of Goddess Mahalakshmi for wealth and domestic harmony.",
+    symbol: "🪙",
+  },
+];
+
+export const seedBlessingsData: BlessingItem[] = [
+  {
+    id: "blessing-1",
+    guestName: "Senthil Kumar & Family",
+    message: "Wishing dearest Rudran & Nandhini a lifetime filled with immense joy, everlasting love, and abundant blessings! Congratulations on your holy union!",
+    timestamp: "2 hours ago",
+    avatarColor: "#C5A059",
+  },
+  {
+    id: "blessing-2",
+    guestName: "Dr. Meenakshi Sundaram",
+    message: "May the divine grace shower upon both of you forever. Wishing you a blissful and radiant married life together!",
+    timestamp: "5 hours ago",
+    avatarColor: "#8E2232",
+  },
+  {
+    id: "blessing-3",
+    guestName: "Karthik & Divya",
+    message: "From school mates to soul mates — your story is pure magic! Cheers to a wonderful new chapter filled with laughter and adventures.",
+    timestamp: "1 day ago",
+    avatarColor: "#345E47",
+  },
+  {
+    id: "blessing-4",
+    guestName: "Anand & Priya",
+    message: "Heartiest congratulations Rudran and Nandhini! May your bond grow stronger with every passing sunrise.",
+    timestamp: "2 days ago",
+    avatarColor: "#C5A059",
+  },
+];

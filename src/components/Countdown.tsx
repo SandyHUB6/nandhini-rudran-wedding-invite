@@ -43,7 +43,7 @@ export const Countdown: React.FC = () => {
   const formatNumber = (num: number) => num.toString().padStart(2, '0');
 
   return (
-    <section className="relative py-20 sm:py-24 px-4 sm:px-6 w-full flex flex-col items-center justify-center bg-[#150103] overflow-hidden">
+    <section id="events" className="relative py-20 sm:py-24 px-4 sm:px-6 w-full flex flex-col items-center justify-center bg-[#150103] overflow-hidden">
       {/* Background Soft Gold Radial */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.08)_0%,transparent_70%)]" />
 

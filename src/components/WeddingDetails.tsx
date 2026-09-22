@@ -49,7 +49,7 @@ export const WeddingDetails: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 sm:py-28 px-4 sm:px-6 w-full flex flex-col items-center justify-center bg-[#180205] overflow-hidden">
+    <section id="venue" className="relative py-20 sm:py-28 px-4 sm:px-6 w-full flex flex-col items-center justify-center bg-[#180205] overflow-hidden">
       {/* Subtle Background Radial Glow */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(86,16,27,0.45)_0%,rgba(24,2,5,0.98)_70%)]" />
 

@@ -251,7 +251,7 @@ export const DigitalInvitation: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-14 sm:pt-20 pb-20 sm:pb-28 px-3 sm:px-6 w-full flex flex-col items-center justify-center bg-[#1A0205] overflow-hidden">
+    <section id="home" className="relative pt-14 sm:pt-20 pb-20 sm:pb-28 px-3 sm:px-6 w-full flex flex-col items-center justify-center bg-[#1A0205] overflow-hidden">
       {/* Background Sacred Atmosphere */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(74,14,23,0.85)_0%,rgba(26,2,5,0.98)_85%)]" />
 
