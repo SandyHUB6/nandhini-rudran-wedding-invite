@@ -97,9 +97,7 @@ export const InvitationReveal: React.FC<InvitationRevealProps> = ({
             {/* Inner Content */}
             <div className="pt-2">
               <PillaiyarSuzhi />
-              <p className="font-cormorant italic text-xs sm:text-sm font-semibold text-[#805F24] mt-1">
-                {weddingData.invocation}
-              </p>
+
             </div>
 
             <div className="space-y-1 my-auto">

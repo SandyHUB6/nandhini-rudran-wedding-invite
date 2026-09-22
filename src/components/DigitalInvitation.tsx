@@ -109,54 +109,6 @@ const HangingScrollTassel: React.FC = () => {
   );
 };
 
-// Royal Ganesha Stamp / Line-Art Emblem
-const RoyalGaneshaEmblem: React.FC<{ size?: number }> = ({ size = 52 }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="select-none"
-  >
-    <defs>
-      <linearGradient id="scrollGold" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#FFF2B2" />
-        <stop offset="50%" stopColor="#C5A059" />
-        <stop offset="100%" stopColor="#7E5C1D" />
-      </linearGradient>
-    </defs>
-    {/* Crown */}
-    <path d="M50,8 L58,22 L42,22 Z" stroke="url(#scrollGold)" strokeWidth="1.8" fill="none" />
-    <circle cx="50" cy="6" r="2.5" fill="url(#scrollGold)" />
-    <path d="M38,22 C44,17 56,17 62,22" stroke="url(#scrollGold)" strokeWidth="1.5" fill="none" />
-    {/* Tilak */}
-    <path d="M47,24 L50,15 L53,24" stroke="url(#scrollGold)" strokeWidth="1.4" fill="none" />
-    <circle cx="50" cy="27" r="2" fill="#8B1E2F" />
-    {/* Ears */}
-    <path d="M40,24 C27,24 21,35 32,47 C36,44 38,40 40,36" stroke="url(#scrollGold)" strokeWidth="1.8" fill="none" />
-    <path d="M60,24 C73,24 79,35 68,47 C64,44 62,40 60,36" stroke="url(#scrollGold)" strokeWidth="1.8" fill="none" />
-    {/* Trunk curving to left holding Modak */}
-    <path
-      d="M50,30 Q53,46 44,56 Q36,64 42,70 Q48,74 52,68 Q54,64 50,60"
-      stroke="url(#scrollGold)"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path d="M43,44 L37,47" stroke="url(#scrollGold)" strokeWidth="2" strokeLinecap="round" />
-    <path d="M57,44 L61,46" stroke="url(#scrollGold)" strokeWidth="2" strokeLinecap="round" />
-    <ellipse cx="51" cy="67" rx="3.5" ry="4.5" fill="url(#scrollGold)" />
-    {/* Lotus Base */}
-    <path
-      d="M22,84 C33,75 44,79 50,86 C56,79 67,75 78,84 C70,93 30,93 22,84 Z"
-      stroke="url(#scrollGold)"
-      strokeWidth="1.6"
-      fill="none"
-    />
-  </svg>
-);
-
 // Medallion Temple Arch Frame for Couple's Photograph inside Scroll
 const ScrollPortraitMedallion: React.FC<{
   imageSrc: string;
@@ -316,16 +268,6 @@ export const DigitalInvitation: React.FC = () => {
         <KuthuVilakku size="lg" lit={true} />
       </div>
 
-      {/* Decorative Section Tag */}
-      <div className="relative z-10 mb-6 sm:mb-10 flex flex-col items-center text-center mt-2 sm:mt-0">
-        <span className="font-cormorant uppercase tracking-[0.35em] text-xs sm:text-sm text-[#C5A059] font-medium">
-          Auspicious Wedding Patrikai
-        </span>
-        <h2 className="font-cinzel text-sm sm:text-base text-[#FAF7F0]/85 tracking-[0.25em] uppercase mt-1">
-          The Wedding Invitation
-        </h2>
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mt-2" />
-      </div>
 
       {/* THE ANTIQUE ROYAL SCROLL WRAPPER */}
       <motion.div
@@ -371,15 +313,6 @@ export const DigitalInvitation: React.FC = () => {
             {/* Sacred Symbol (ॐ) */}
             <PillaiyarSuzhi className="mb-0.5" />
 
-            {/* Sri Ganesha Invocational Header */}
-            <h3 className="font-cormorant text-lg sm:text-xl font-bold text-[#4A0E17] tracking-wider italic drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-              {weddingData.invocation}
-            </h3>
-
-            {/* Royal Line-Art Ganesha Seal */}
-            <div className="py-1">
-              <RoyalGaneshaEmblem size={54} />
-            </div>
 
             {/* Couple's Romantic Tagline */}
             <div className="space-y-0.5 pt-0.5">

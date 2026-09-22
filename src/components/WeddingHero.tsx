@@ -128,7 +128,7 @@ export const WeddingHero: React.FC = () => {
         className="relative z-20 flex flex-col items-center gap-1.5 mt-6 pointer-events-none"
       >
         <span className="font-cormorant text-xs uppercase tracking-[0.25em] text-[#C5A059]/70">
-          Scroll to view Patrikai
+          Scroll down to explore
         </span>
         <div className="w-[1px] h-6 bg-gradient-to-b from-[#C5A059] to-transparent" />
       </motion.div>

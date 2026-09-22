@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { InvitationCover } from './components/InvitationCover';
 import { InvitationReveal } from './components/InvitationReveal';
 import { DigitalInvitation } from './components/DigitalInvitation';
-import { ThirukkuralBanner } from './components/ThirukkuralBanner';
 import { Countdown } from './components/Countdown';
 import { PhotoMoment } from './components/PhotoMoment';
 import { WeddingDetails } from './components/WeddingDetails';
@@ -70,8 +69,6 @@ export function App() {
             {/* 1. Traditional Royal Antique Scroll Patrikai (Framed by Mandapam Thoranam & Kuthu Vilakku) */}
             <DigitalInvitation />
 
-            {/* 2. Auspicious Thirukkural (Couplet 45) Blessing */}
-            <ThirukkuralBanner />
 
             {/* 3. Minimal Stationery Countdown */}
             <Countdown />

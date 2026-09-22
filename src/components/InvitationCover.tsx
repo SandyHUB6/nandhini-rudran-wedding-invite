@@ -86,15 +86,7 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
             {/* Auspicious Pillaiyar Suzhi */}
             <PillaiyarSuzhi />
 
-            {/* Invocational Header */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
-              className="font-cormorant italic text-sm sm:text-base font-semibold text-gold-foil tracking-wide"
-            >
-              {weddingData.invocation}
-            </motion.p>
+
 
             {/* Subtle Divider with Diamond Accent */}
             <div className="flex items-center justify-center gap-2 w-full max-w-[200px] my-1 opacity-70">
