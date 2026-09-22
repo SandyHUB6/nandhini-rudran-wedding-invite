@@ -286,8 +286,31 @@ export const DigitalInvitation: React.FC = () => {
         {/* 1. TOP CARVED BRASS & TEAK ROLLER */}
         <ScrollRoller position="top" />
 
-        {/* 2. MAIN UNROLLED AGED PARCHMENT BODY */}
-        <div className="relative w-full bg-[#FAF5E8] text-[#3B0811] px-5 sm:px-10 md:px-12 py-8 sm:py-12 shadow-[0_25px_60px_-15px_rgba(10,2,4,0.75),0_0_0_1px_rgba(197,160,89,0.3)] border-x-4 border-[#5A101C]">
+        {/* 2. UNROLLING PARCHMENT CONTAINER (Animated Unfolding) */}
+        <motion.div
+          initial={{ height: 0, opacity: 0.85 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          transition={{
+            duration: 1.8,
+            delay: 0.25,
+            ease: [0.16, 1, 0.3, 1], // Royal smooth unroll curve
+          }}
+          className="relative w-full overflow-hidden origin-top"
+        >
+          {/* Unfolding Golden Light Sheen */}
+          <motion.div
+            initial={{ top: '0%', opacity: 0.9 }}
+            animate={{ top: '100%', opacity: 0 }}
+            transition={{
+              duration: 1.8,
+              delay: 0.25,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#FFE8A3]/30 to-transparent pointer-events-none z-30"
+          />
+
+          {/* MAIN UNROLLED AGED PARCHMENT BODY */}
+          <div className="relative w-full bg-[#FAF5E8] text-[#3B0811] px-5 sm:px-10 md:px-12 py-8 sm:py-12 shadow-[0_25px_60px_-15px_rgba(10,2,4,0.75),0_0_0_1px_rgba(197,160,89,0.3)] border-x-4 border-[#5A101C]">
 
           {/* Authentic Woven Gold Zari Border down Left & Right Selvedges */}
           <div className="absolute top-0 bottom-0 left-1 w-2.5 sm:w-3.5 bg-[repeating-linear-gradient(0deg,#C5A059,#C5A059_3px,#FAF5E8_3px,#FAF5E8_6px,#805F24_6px,#805F24_8px)] opacity-70 pointer-events-none" />
@@ -434,24 +457,6 @@ export const DigitalInvitation: React.FC = () => {
               subDate="Auspicious Morning Muhurtham (Aippasi 25)"
               time="9:00 AM – 10:00 AM IST"
             />
-
-            {/* Venue & Kalyana Mandapam (Uniform Card Styling) */}
-            <div className="relative w-full rounded-xl p-5 text-center bg-gradient-to-b from-[#FFFDF9] via-[#FAF4E6] to-[#F5EED8] border border-[#C5A059] shadow-sm mt-4">
-              <div className="absolute inset-1.5 rounded-lg border border-[#8B1E2F]/20 pointer-events-none" />
-
-              <p className="relative z-10 font-cinzel text-[11px] sm:text-xs uppercase tracking-[0.22em] font-bold text-[#805F24] mb-1">
-                Kalyana Mandapam • Wedding Venue
-              </p>
-              <h3 className="relative z-10 font-cinzel text-xl sm:text-2xl font-bold text-[#3B0811]">
-                {weddingData.venueName}
-              </h3>
-              <p className="relative z-10 font-cormorant italic text-xs sm:text-sm font-semibold text-[#805F24] mt-0.5">
-                Marriage Hall & Convention Centre
-              </p>
-              <p className="relative z-10 font-cormorant text-xs sm:text-sm text-[#420A12]/85 max-w-sm mx-auto leading-relaxed pt-1">
-                {weddingData.location}
-              </p>
-            </div>
           </div>
 
           {/* Traditional Closing Blessing Note */}
@@ -465,12 +470,25 @@ export const DigitalInvitation: React.FC = () => {
           </div>
 
         </div>
+        </motion.div>
 
         {/* 3. BOTTOM CARVED BRASS & TEAK ROLLER */}
         <ScrollRoller position="bottom" />
 
-        {/* 4. ROYAL SILK BRAIDED CORD & HANGING GOLD TASSEL */}
-        <HangingScrollTassel />
+        {/* 4. ROYAL SILK BRAIDED CORD & HANGING GOLD TASSEL (Gently Sways) */}
+        <motion.div
+          animate={{ rotate: [0, 2.5, -2.5, 1, -1, 0] }}
+          transition={{
+            duration: 3.5,
+            delay: 1.8,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 3,
+          }}
+          className="origin-top"
+        >
+          <HangingScrollTassel />
+        </motion.div>
       </motion.div>
     </section>
   );
