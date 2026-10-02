@@ -16,15 +16,17 @@ interface InvitationCoverProps {
 }
 
 export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpening }) => {
+  const hasTriggeredRef = React.useRef(false);
+
   const handleCardClick = () => {
-    if (!isOpening) {
-      playTempleBellChime();
-      onOpen();
-    }
+    if (isOpening || hasTriggeredRef.current) return;
+    hasTriggeredRef.current = true;
+    playTempleBellChime();
+    onOpen();
   };
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden bg-maroon-pattern">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center p-3 sm:p-6 overflow-hidden bg-maroon-pattern touch-manipulation select-none">
       {/* Soft Ambient Radial Light simulating temple oil lamps & morning sunlight */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.12)_0%,rgba(42,5,11,0.7)_60%,rgba(26,2,5,0.95)_100%)]" />
 
@@ -51,29 +53,33 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
         layout
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{
-          opacity: 1,
+          opacity: isOpening ? 0 : 1,
           y: 0,
-          scale: isOpening ? 1.04 : 1,
+          scale: 1,
         }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-20 w-full max-w-[420px] sm:max-w-[480px] md:max-w-[520px] perspective-1000"
+        transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-20 w-full max-w-[390px] sm:max-w-[480px] md:max-w-[520px] perspective-1000 my-auto"
       >
         {/* Envelope / Pocket Card Container */}
         <div
           onClick={handleCardClick}
-          className="relative bg-gradient-to-b from-[#3B0811] via-[#2A050B] to-[#1E0307] rounded-xl p-6 sm:p-9 md:p-10 border border-[#C5A059]/40 shadow-envelope cursor-pointer group transition-all duration-700 hover:border-[#C5A059] hover:shadow-card-luxury"
+          className={`relative bg-gradient-to-b from-[#3B0811] via-[#2A050B] to-[#1E0307] rounded-xl p-5 sm:p-9 md:p-10 border border-[#C5A059]/40 shadow-envelope cursor-pointer group transition-all duration-700 hover:border-[#C5A059] hover:shadow-card-luxury touch-manipulation ${
+            isOpening ? 'pointer-events-none' : ''
+          }`}
           role="button"
           tabIndex={0}
+          aria-disabled={isOpening}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
               handleCardClick();
             }
           }}
           aria-label="Open Wedding Invitation"
         >
           {/* Inner Paper Inset Border (Double Gold Line with Corner Filigree) */}
-          <div className="absolute inset-3 sm:inset-4 border border-[#C5A059]/50 rounded-lg pointer-events-none" />
-          <div className="absolute inset-4 sm:inset-5 border border-[#805F24]/40 rounded pointer-events-none" />
+          <div className="absolute inset-2.5 sm:inset-4 border border-[#C5A059]/50 rounded-lg pointer-events-none" />
+          <div className="absolute inset-3.5 sm:inset-5 border border-[#805F24]/40 rounded pointer-events-none" />
 
           {/* 4 Corner Antique Gold Ornaments */}
           <OrnamentalCorner position="top-left" className="top-3 left-3 sm:top-4 sm:left-4" />
@@ -86,7 +92,16 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
             {/* Auspicious Pillaiyar Suzhi */}
             <PillaiyarSuzhi />
 
-
+            {/* Royal Couple Monogram Crest */}
+            <div className="flex justify-center -my-1">
+              <div className="relative p-2 rounded-full bg-gradient-to-b from-[#C5A059]/15 via-[#4A0E17]/25 to-transparent border border-[#C5A059]/35 shadow-gold-subtle">
+                <img
+                  src={weddingData.weddingLogo}
+                  alt="Rudran & Nandhini Monogram"
+                  className="w-14 h-14 sm:w-16 sm:h-16 object-contain filter brightness-[1.65] contrast-[1.1] drop-shadow-[0_2px_8px_rgba(197,160,89,0.4)] select-none pointer-events-none"
+                />
+              </div>
+            </div>
 
             {/* Subtle Divider with Diamond Accent */}
             <div className="flex items-center justify-center gap-2 w-full max-w-[200px] my-1 opacity-70">
@@ -95,8 +110,9 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
               <span className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
             </div>
 
-            {/* Couple Names - The Crown of the Invitation (Groom & Bride Swapped) */}
+            {/* Couple Names - The Crown of the Invitation (Groom & Bride) */}
             <div className="py-2 space-y-2">
+              {/* Groom */}
               <div className="space-y-0.5">
                 <div className="inline-flex items-center justify-center px-3 py-0.5 rounded-full bg-[#420A12]/60 border border-[#C5A059]/40 mb-1">
                   <span className="font-cinzel text-[9px] sm:text-[10px] text-[#E5C578] font-bold tracking-widest uppercase">
@@ -104,10 +120,11 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
                   </span>
                 </div>
                 <h1 className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-gold-foil">
-                  {weddingData.groomName}
+                  {weddingData.groomFirstName}
                 </h1>
               </div>
 
+              {/* Knot */}
               <div className="flex items-center justify-center gap-3 my-1">
                 <span className="w-10 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
                 <p className="font-cormorant italic text-lg sm:text-2xl text-[#E5C578]/80 font-normal select-none">
@@ -116,6 +133,7 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
                 <span className="w-10 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
               </div>
 
+              {/* Bride */}
               <div className="space-y-0.5">
                 <div className="inline-flex items-center justify-center px-3 py-0.5 rounded-full bg-[#420A12]/60 border border-[#C5A059]/40 mb-1">
                   <span className="font-cinzel text-[9px] sm:text-[10px] text-[#E5C578] font-bold tracking-widest uppercase">
@@ -123,7 +141,7 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
                   </span>
                 </div>
                 <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl font-bold tracking-wider text-gold-foil">
-                  {weddingData.brideName}
+                  {weddingData.brideFirstName}
                 </h2>
               </div>
             </div>
@@ -148,7 +166,14 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="button"
-                className="relative group/btn flex items-center gap-3 px-7 py-3 rounded-full bg-gradient-to-r from-[#2A050B] via-[#4A0E17] to-[#2A050B] border border-[#C5A059] shadow-gold-subtle overflow-hidden"
+                disabled={isOpening}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCardClick();
+                }}
+                className={`relative group/btn flex items-center justify-center gap-3 min-h-[48px] px-6 sm:px-7 py-3 rounded-full bg-gradient-to-r from-[#2A050B] via-[#4A0E17] to-[#2A050B] border border-[#C5A059] shadow-gold-subtle overflow-hidden touch-manipulation transition-all active:scale-95 ${
+                  isOpening ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'
+                }`}
               >
                 {/* Shimmer sweep effect */}
                 <div className="absolute inset-0 bg-gold-shimmer opacity-0 group-hover/btn:opacity-100 transition-opacity duration-700 pointer-events-none" />

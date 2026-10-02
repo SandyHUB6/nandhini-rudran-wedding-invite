@@ -44,7 +44,7 @@ export function App() {
             key="cover-wrapper"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.15 }}
             className="w-full"
           >
             <InvitationCover
@@ -61,13 +61,13 @@ export function App() {
           /* Step 3+: The Grand Mandapam Wedding Experience */
           <motion.div
             key="wedding-content"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.2 }}
             className="w-full relative"
           >
             {/* 1. Traditional Royal Antique Scroll Patrikai (Framed by Mandapam Thoranam & Kuthu Vilakku) */}
-            <DigitalInvitation />
+            <DigitalInvitation isPreUnrolled={true} />
 
 
             {/* 3. Minimal Stationery Countdown */}

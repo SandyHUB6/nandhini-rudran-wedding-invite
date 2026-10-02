@@ -1,19 +1,31 @@
 export interface Ceremony {
   id: string;
   name: string;
+  badge: string;
+  subtitle: string;
   tamilName?: string;
   date: string;
   tamilDate?: string;
   day: string;
   time: string;
   venue: string;
+  address: string;
+  mapUrl: string;
 }
 
 export interface WeddingConfig {
-  brideName: string;
   groomName: string;
-  brideTamil?: string;
+  groomFirstName: string;
+  groomEducation: string;
+  groomProfession: string;
+  groomDesignation: string;
   groomTamil?: string;
+  brideName: string;
+  brideFirstName: string;
+  brideEducation: string;
+  brideDesignation: string;
+  brideCompany: string;
+  brideTamil?: string;
   tagline: string;
   subTagline: string;
   auspiciousSymbol: string;
@@ -35,6 +47,7 @@ export interface WeddingConfig {
   audio: string;
   coupleImage: string;
   secondaryCoupleImage: string;
+  weddingLogo: string;
   ceremonies: Ceremony[];
   calendarEvent: {
     title: string;
@@ -46,9 +59,17 @@ export interface WeddingConfig {
 }
 
 export const weddingData: WeddingConfig = {
-  groomName: "Rudran Veerabadran",
-  brideName: "Nandhini Gouthaman",
+  groomName: "V. Rudran",
+  groomFirstName: "Rudran",
+  groomEducation: "B.E. (EEE)",
+  groomProfession: "Marine / ETO",
+  groomDesignation: "Marine Engineer",
   groomTamil: "",
+  brideName: "G. Nandhini",
+  brideFirstName: "Nandhini",
+  brideEducation: "B.E. (CSE)",
+  brideDesignation: "Senior Software Engineer",
+  brideCompany: "Capgemini, Chennai",
   brideTamil: "",
   tagline: "School Mate → Soul Mate",
   subTagline: "A Decade of Us (2016 – 2026)",
@@ -58,46 +79,53 @@ export const weddingData: WeddingConfig = {
   invitationSubtitle: "Wedding Invitation",
   invitationEnglishSubtitle: "Wedding Invitation",
   invitationTamilSubtitle: "Wedding Invitation",
-  parentsNote: "Together with their families",
+  parentsNote: "With the blessings of our elders",
   date: "11 November 2026",
   tamilDate: "Wednesday, 11 November 2026",
   day: "Wednesday",
-  muhurthamTime: "9:00 AM – 10:00 AM IST",
+  muhurthamTime: "9:00 AM – 10:30 AM",
   targetDateISO: "2026-11-11T09:00:00+05:30",
-  venueName: "Soudamman Kovil Kalyana Mandapam",
-  venueTamil: "Soudamman Kovil Kalyana Mandapam",
-  location: "Souduman Koil Back Side, 1/1, Near IDBI Bank, Ammankulam, Bodinayakanur, Theni District, Tamil Nadu – 625513",
+  venueName: "Sri Srinivasa Perumal Temple",
+  venueTamil: "Sri Srinivasa Perumal Temple",
+  location: "Sri Srinivasa Perumal Temple, Bodinayakanur, Theni District, Tamil Nadu",
   mapUrl: "https://maps.app.goo.gl/rW2wJotrbcJr9mES9",
   audio: "/assets/audio/wedding-bgm.mp3",
   coupleImage: "/assets/images/couple-portrait.png",
   secondaryCoupleImage: "/assets/images/couple-portrait3.png",
+  weddingLogo: "/assets/images/wedding-logo.png",
   ceremonies: [
     {
       id: "engagement",
-      name: "Engagement Ceremony",
-      tamilName: "Engagement Ceremony",
-      date: "Tuesday, November 10, 2026",
+      name: "Engagement & Ring Ceremony",
+      badge: "ENGAGEMENT & RING CEREMONY",
+      subtitle: "Marriage Hall & Reception Venue",
+      date: "Tuesday, 10 November 2026",
       tamilDate: "Auspicious Evening Muhurtham",
       day: "Tuesday",
-      time: "6:00 PM – 9:00 PM IST",
-      venue: "Soudamman Kovil Kalyana Mandapam, Bodinayakanur",
+      time: "7:35 PM – 8:35 PM",
+      venue: "Soudamman Kovil Kalyana Mandapam",
+      address: "Souduman Koil Back Side, 1/1, Near IDBI Bank, Ammankulam, Bodinayakanur, Theni District – 625513",
+      mapUrl: "https://maps.google.com/?q=Soudamman+Kovil+Kalyana+Mandapam+Bodinayakanur",
     },
     {
-      id: "muhurtham",
-      name: "Holy Subha Muhurtham",
-      tamilName: "Holy Subha Muhurtham",
-      date: "Wednesday, November 11, 2026",
-      tamilDate: "Auspicious Morning Muhurtham",
+      id: "wedding",
+      name: "Wedding Ceremony",
+      badge: "WEDDING CEREMONY",
+      subtitle: "Sacred Temple Muhurtham Venue",
+      date: "Wednesday, 11 November 2026",
+      tamilDate: "Sacred Morning Muhurtham",
       day: "Wednesday",
-      time: "9:00 AM – 10:00 AM IST",
-      venue: "Soudamman Kovil Kalyana Mandapam, Bodinayakanur",
+      time: "9:00 AM – 10:30 AM",
+      venue: "Sri Srinivasa Perumal Temple",
+      address: "Sri Srinivasa Perumal Temple, Bodinayakanur, Theni District, Tamil Nadu",
+      mapUrl: "https://maps.google.com/?q=Sri+Srinivasa+Perumal+Temple+Bodinayakanur",
     },
   ],
   calendarEvent: {
     title: "Wedding of Rudran & Nandhini",
-    description: "Traditional South Indian Hindu Wedding of Rudran Veerabadran & Nandhini Gouthaman. Muhurtham: 9:00 AM – 10:00 AM IST at Soudamman Kovil Kalyana Mandapam, Bodinayakanur.",
-    location: "Soudamman Kovil Kalyana Mandapam, Souduman Koil Back Side, 1/1, Near IDBI Bank, Ammankulam, Bodinayakanur, Theni District, Tamil Nadu – 625513",
+    description: "Traditional South Indian Hindu Wedding of V. Rudran & G. Nandhini. Engagement & Ring Ceremony: Tuesday, 10 Nov 2026 (7:35 PM – 8:35 PM) at Soudamman Kovil Kalyana Mandapam, Bodinayakanur. Wedding Ceremony: Wednesday, 11 Nov 2026 (9:00 AM – 10:30 AM) at Sri Srinivasa Perumal Temple, Bodinayakanur.",
+    location: "Sri Srinivasa Perumal Temple, Bodinayakanur, Theni District, Tamil Nadu",
     startDate: "20261111T033000Z", // 9:00 AM IST = 3:30 AM UTC
-    endDate: "20261111T043000Z",   // 10:00 AM IST = 4:30 AM UTC
+    endDate: "20261111T050000Z",   // 10:30 AM IST = 5:00 AM UTC
   },
 };

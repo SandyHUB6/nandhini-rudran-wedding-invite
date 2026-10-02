@@ -15,7 +15,7 @@ import { KolamMotif, PillaiyarSuzhi, MaavilaiThoranam, KuthuVilakku } from './Tr
  */
 
 // Antique Brass / Teak Roller with Kalasam Finials
-const ScrollRoller: React.FC<{ position: 'top' | 'bottom' }> = ({ position }) => {
+export const ScrollRoller: React.FC<{ position: 'top' | 'bottom' }> = ({ position }) => {
   return (
     <div className={`relative w-full z-30 select-none pointer-events-none flex items-center justify-center ${position === 'top' ? '-mb-2 sm:-mb-3' : '-mt-2 sm:-mt-3'}`}>
       {/* Outer wrapper extending slightly beyond the parchment for protruding royal finials */}
@@ -75,7 +75,7 @@ const ScrollRoller: React.FC<{ position: 'top' | 'bottom' }> = ({ position }) =>
 };
 
 // Hanging Royal Silk Cord & Golden Tassel
-const HangingScrollTassel: React.FC = () => {
+export const HangingScrollTassel: React.FC = () => {
   return (
     <div className="relative flex flex-col items-center -mt-1 select-none pointer-events-none z-20">
       {/* Hanging Braided Golden Cord */}
@@ -110,7 +110,7 @@ const HangingScrollTassel: React.FC = () => {
 };
 
 // Medallion Temple Arch Frame for Couple's Photograph inside Scroll
-const ScrollPortraitMedallion: React.FC<{
+export const ScrollPortraitMedallion: React.FC<{
   imageSrc: string;
   brideName: string;
   groomName: string;
@@ -164,20 +164,22 @@ const ScrollPortraitMedallion: React.FC<{
 };
 
 // 100% Strictly Uniform Ceremony Event Card Component
-interface UniformCeremonyCardProps {
+export interface UniformCeremonyCardProps {
   badge: string;
   title: string;
   date: string;
   subDate?: string;
   time: string;
+  venue?: string;
 }
 
-const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
+export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
   badge,
   title,
   date,
   subDate,
   time,
+  venue,
 }) => {
   return (
     <div className="relative w-full rounded-xl p-5 sm:p-6 text-center bg-gradient-to-b from-[#FFFDF9] via-[#FAF4E6] to-[#F5EED8] border-2 border-[#C5A059] shadow-[0_4px_16px_rgba(74,14,23,0.09)] transition-transform duration-300 hover:scale-[1.01]">
@@ -220,17 +222,26 @@ const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
       )}
 
       {/* Auspicious Time Window (Identical Golden Box) */}
-      <div className="relative z-10 mt-3.5 inline-flex items-center justify-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-[#EFE1C6] via-[#FDFBF7] to-[#EFE1C6] border border-[#C5A059] shadow-inner">
+      <div className="relative z-10 mt-3 inline-flex items-center justify-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-[#EFE1C6] via-[#FDFBF7] to-[#EFE1C6] border border-[#C5A059] shadow-inner">
         <span className="text-xs select-none">🪔</span>
         <span className="font-cinzel text-xs sm:text-sm font-extrabold text-[#420A12] tracking-wider">
           {time}
         </span>
       </div>
+
+      {/* Ceremony Venue */}
+      {venue && (
+        <div className="relative z-10 pt-3 mt-2.5 border-t border-[#C5A059]/35 flex flex-col items-center">
+          <p className="font-cinzel text-xs sm:text-sm font-bold text-[#3B0811] tracking-wide">
+            {venue}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
 
-export const DigitalInvitation: React.FC = () => {
+export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPreUnrolled = false }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -271,9 +282,9 @@ export const DigitalInvitation: React.FC = () => {
 
       {/* THE ANTIQUE ROYAL SCROLL WRAPPER */}
       <motion.div
-        initial={{ opacity: 0, y: 25, scale: 0.98 }}
+        initial={isPreUnrolled ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 25, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: isPreUnrolled ? 0.3 : 1.1, ease: [0.22, 1, 0.36, 1] }}
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -288,9 +299,9 @@ export const DigitalInvitation: React.FC = () => {
 
         {/* 2. UNROLLING PARCHMENT CONTAINER (Animated Unfolding) */}
         <motion.div
-          initial={{ height: 0, opacity: 0.85 }}
+          initial={isPreUnrolled ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0.85 }}
           animate={{ height: 'auto', opacity: 1 }}
-          transition={{
+          transition={isPreUnrolled ? { duration: 0 } : {
             duration: 1.8,
             delay: 0.25,
             ease: [0.16, 1, 0.3, 1], // Royal smooth unroll curve
@@ -298,16 +309,18 @@ export const DigitalInvitation: React.FC = () => {
           className="relative w-full overflow-hidden origin-top"
         >
           {/* Unfolding Golden Light Sheen */}
-          <motion.div
-            initial={{ top: '0%', opacity: 0.9 }}
-            animate={{ top: '100%', opacity: 0 }}
-            transition={{
-              duration: 1.8,
-              delay: 0.25,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#FFE8A3]/30 to-transparent pointer-events-none z-30"
-          />
+          {!isPreUnrolled && (
+            <motion.div
+              initial={{ top: '0%', opacity: 0.9 }}
+              animate={{ top: '100%', opacity: 0 }}
+              transition={{
+                duration: 1.8,
+                delay: 0.25,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#FFE8A3]/30 to-transparent pointer-events-none z-30"
+            />
+          )}
 
           {/* MAIN UNROLLED AGED PARCHMENT BODY */}
           <div className="relative w-full bg-[#FAF5E8] text-[#3B0811] px-5 sm:px-10 md:px-12 py-8 sm:py-12 shadow-[0_25px_60px_-15px_rgba(10,2,4,0.75),0_0_0_1px_rgba(197,160,89,0.3)] border-x-4 border-[#5A101C]">
@@ -356,15 +369,32 @@ export const DigitalInvitation: React.FC = () => {
           </div>
 
           {/* ========================================================
-              INVITATION PREAMBLE
+              INVITATION OPENING & EMOTIONAL CONNECTION
               ======================================================== */}
-          <div className="relative z-10 text-center space-y-1.5 my-3 sm:my-4 px-2">
-            <p className="font-cormorant italic text-sm sm:text-base text-[#70501C] font-semibold tracking-wide">
-              With the divine grace of the Almighty and our beloved ancestors
-            </p>
-            <p className="font-cormorant italic text-base sm:text-lg text-[#3B0811] leading-relaxed max-w-md mx-auto font-medium">
-              We cordially invite you and your family to celebrate the auspicious wedding of our children and shower your heartfelt blessings
-            </p>
+          <div className="relative z-10 text-center space-y-4 my-4 sm:my-6 px-3">
+            {/* Opening Narrative */}
+            <div className="space-y-1.5 max-w-lg mx-auto">
+              <p className="font-cormorant italic text-base sm:text-lg text-[#5A101C] leading-relaxed font-medium">
+                With the divine grace of the Almighty
+                <br />
+                and the heartfelt blessings of our beloved elders,
+              </p>
+              <p className="font-cormorant italic text-sm sm:text-base text-[#70501C] leading-relaxed">
+                we are stepping hand-in-hand into a sacred and beautiful new chapter of our lives.
+              </p>
+            </div>
+
+            {/* Emotional Centerpiece with Visual Emphasis */}
+            <div className="pt-1.5 pb-1">
+              <p className="font-cormorant italic text-sm sm:text-base text-[#805F24] font-semibold tracking-wider mb-1.5">
+                And on this most cherished day of our union,
+              </p>
+              <div className="border-y border-[#C5A059]/40 py-2.5 max-w-sm sm:max-w-md mx-auto bg-gradient-to-r from-transparent via-[#FFEFC7]/60 to-transparent">
+                <p className="font-cormorant italic text-xl sm:text-2xl md:text-[26px] text-[#3B0811] font-bold leading-relaxed tracking-wide drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
+                  we would love to have you by our side.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* ========================================================
@@ -379,23 +409,44 @@ export const DigitalInvitation: React.FC = () => {
           </div>
 
           {/* ========================================================
-              COUPLE NAMES — ROYAL PATRIYEGA TYPOGRAPHY (Groom & Bride Swapped)
+              COUPLE NAMES & INVITATION — ROYAL PATRIYEGA TYPOGRAPHY
               ======================================================== */}
-          <div className="relative z-10 text-center space-y-2 py-4 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
-            {/* Groom Name */}
-            <div className="space-y-1">
+          <div className="relative z-10 text-center space-y-2 py-5 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
+            {/* Traditional Royal Couple Monogram Seal */}
+            <div className="flex justify-center pt-1 pb-1">
+              <motion.img
+                initial={{ opacity: 0, scale: 0.92 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                src={weddingData.weddingLogo}
+                alt="Rudran & Nandhini Monogram"
+                className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_2px_6px_rgba(74,14,23,0.12)] select-none pointer-events-none"
+              />
+            </div>
+
+            {/* Groom Details */}
+            <div className="space-y-1 sm:space-y-1.5">
               <div className="inline-flex items-center justify-center px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
                 <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#805F24]">
-                  Groom • Selvan
+                  Groom
                 </span>
               </div>
               <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
                 {weddingData.groomName}
               </h1>
+              <div className="flex flex-col items-center space-y-0.5 pt-0.5">
+                <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-wider text-[#805F24]">
+                  {weddingData.groomEducation}
+                </span>
+                <span className="font-cormorant italic text-sm sm:text-base text-[#5A101C] font-medium tracking-wide">
+                  {weddingData.groomProfession} • {weddingData.groomDesignation}
+                </span>
+              </div>
             </div>
 
             {/* Sacred Lotus Knot */}
-            <div className="flex items-center justify-center gap-3 my-1.5">
+            <div className="flex items-center justify-center gap-3 my-2 sm:my-2.5">
               <span className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
               <span className="font-cormorant italic text-2xl sm:text-3xl text-[#C5A059] font-light select-none">
                 &
@@ -403,21 +454,39 @@ export const DigitalInvitation: React.FC = () => {
               <span className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
             </div>
 
-            {/* Bride Name */}
-            <div className="space-y-1">
+            {/* Bride Details */}
+            <div className="space-y-1 sm:space-y-1.5">
               <div className="inline-flex items-center justify-center px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
                 <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#805F24]">
-                  Bride • Selvi
+                  Bride
                 </span>
               </div>
               <h2 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
                 {weddingData.brideName}
               </h2>
+              <div className="flex flex-col items-center space-y-0.5 pt-0.5">
+                <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-wider text-[#805F24]">
+                  {weddingData.brideEducation}
+                </span>
+                <span className="font-cormorant italic text-sm sm:text-base text-[#5A101C] font-medium tracking-wide">
+                  {weddingData.brideDesignation}, {weddingData.brideCompany}
+                </span>
+              </div>
             </div>
 
-            <p className="font-cormorant text-xs sm:text-sm uppercase tracking-[0.22em] text-[#805F24] font-bold pt-1.5">
-              Cordially invite your gracious presence to bless the couple
-            </p>
+            {/* Main Invitation Copy (Richer & Soulful) */}
+            <div className="pt-3.5 pb-1 max-w-lg mx-auto px-3 space-y-2">
+              <p className="font-cormorant italic text-base sm:text-lg text-[#3B0811] leading-relaxed font-medium">
+                As we unite our hearts and exchange our sacred vows,
+                <br className="hidden sm:inline" />
+                we warmly invite you to share in our joy and celebrations.
+              </p>
+              <p className="font-cormorant italic text-sm sm:text-base text-[#6B1422] leading-relaxed font-semibold">
+                Please join us at our wedding, and shower us
+                <br className="hidden sm:inline" />
+                with your love, prayers, and heartfelt blessings.
+              </p>
+            </div>
           </div>
 
           {/* ========================================================
@@ -433,13 +502,14 @@ export const DigitalInvitation: React.FC = () => {
               <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#C5A059]" />
             </div>
 
-            {/* Ceremony 1: Engagement Ceremony */}
+            {/* Ceremony 1: Engagement & Ring Ceremony */}
             <UniformCeremonyCard
-              badge="ENGAGEMENT CEREMONY"
+              badge="ENGAGEMENT & RING CEREMONY"
               title="Engagement & Ring Ceremony"
-              date="Tuesday, November 10, 2026"
+              date="Tuesday, 10 November 2026"
               subDate="Auspicious Evening Muhurtham"
-              time="6:00 PM – 9:00 PM IST"
+              time="7:35 PM – 8:35 PM"
+              venue="Soudamman Kovil Kalyana Mandapam, Bodinayakanur"
             />
 
             {/* Auspicious Divider Between Ceremonies */}
@@ -449,24 +519,32 @@ export const DigitalInvitation: React.FC = () => {
               <span className="h-[1px] w-16 sm:w-24 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
             </div>
 
-            {/* Ceremony 2: Holy Subha Muhurtham */}
+            {/* Ceremony 2: Wedding Ceremony */}
             <UniformCeremonyCard
-              badge="HOLY SUBHA MUHURTHAM"
-              title="Sacred Subha Muhurtham"
-              date="Wednesday, November 11, 2026"
-              subDate="Auspicious Morning Muhurtham (Aippasi 25)"
-              time="9:00 AM – 10:00 AM IST"
+              badge="WEDDING CEREMONY"
+              title="Wedding Ceremony"
+              date="Wednesday, 11 November 2026"
+              subDate="Sacred Morning Muhurtham"
+              time="9:00 AM – 10:30 AM"
+              venue="Sri Srinivasa Perumal Temple, Bodinayakanur"
             />
           </div>
 
-          {/* Traditional Closing Blessing Note */}
-          <div className="relative z-10 pt-6 sm:pt-8 text-center border-t border-[#C5A059]/50 mt-6">
-            <p className="font-cormorant text-base sm:text-lg text-[#5A101C] font-bold italic drop-shadow-sm">
-              Your gracious presence is our greatest joy • Warmest Welcome
+          {/* Closing Note */}
+          <div className="relative z-10 pt-6 sm:pt-8 text-center border-t border-[#C5A059]/50 mt-6 space-y-3">
+            <p className="font-cormorant italic text-base sm:text-lg md:text-xl text-[#5A101C] font-semibold leading-relaxed">
+              Having you with us would mean the world to us
+              <br />
+              and make our celebration truly complete.
             </p>
-            <p className="font-cormorant uppercase tracking-[0.25em] text-xs text-[#805F24] font-semibold pt-1">
-              With Best Compliments from Family & Friends
-            </p>
+            <div className="pt-1">
+              <p className="font-cormorant italic text-sm sm:text-base text-[#805F24] font-medium">
+                With all our love & gratitude,
+              </p>
+              <p className="font-cinzel text-sm sm:text-base font-bold text-[#35070E] tracking-wider pt-0.5">
+                {weddingData.groomName} & {weddingData.brideName}
+              </p>
+            </div>
           </div>
 
         </div>
