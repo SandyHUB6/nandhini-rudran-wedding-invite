@@ -95,15 +95,6 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
 
       {/* COUPLE NAMES & INVITATION */}
       <div className="relative z-10 text-center space-y-2 py-4 sm:py-5 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
-        {/* Monogram Seal */}
-        <div className="flex justify-center pt-1 pb-1">
-          <img
-            src={weddingData.weddingLogo}
-            alt="Rudran & Nandhini Monogram"
-            className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_2px_6px_rgba(74,14,23,0.12)] select-none pointer-events-none"
-          />
-        </div>
-
         {/* Groom Details */}
         <div className="space-y-1 sm:space-y-1.5">
           <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">

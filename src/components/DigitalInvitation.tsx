@@ -412,19 +412,6 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
               COUPLE NAMES & INVITATION — ROYAL PATRIYEGA TYPOGRAPHY
               ======================================================== */}
           <div className="relative z-10 text-center space-y-2 py-5 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
-            {/* Traditional Royal Couple Monogram Seal */}
-            <div className="flex justify-center pt-1 pb-1">
-              <motion.img
-                initial={{ opacity: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                src={weddingData.weddingLogo}
-                alt="Rudran & Nandhini Monogram"
-                className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_2px_6px_rgba(74,14,23,0.12)] select-none pointer-events-none"
-              />
-            </div>
-
             {/* Groom Details */}
             <div className="space-y-1 sm:space-y-1.5">
               <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">

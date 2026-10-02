@@ -34,7 +34,7 @@ export const FinalMessage: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Delicate Royal Monogram / Couple Signature */}
+        {/* Couple Signature */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -42,13 +42,6 @@ export const FinalMessage: React.FC = () => {
           transition={{ duration: 0.9, delay: 0.15 }}
           className="flex flex-col items-center justify-center gap-2.5 py-1 w-full max-w-xs"
         >
-          {/* Subtle Couple Monogram Signature */}
-          <img
-            src={weddingData.weddingLogo}
-            alt="Rudran & Nandhini Monogram"
-            className="w-12 h-12 sm:w-14 sm:h-14 object-contain filter brightness-[1.65] contrast-[1.1] drop-shadow-[0_2px_8px_rgba(197,160,89,0.35)] select-none pointer-events-none"
-          />
-
           <div className="flex items-center justify-center gap-3 py-2 border-y border-[#C5A059]/30 w-full">
             <span className="font-cinzel text-base sm:text-lg font-bold tracking-widest text-gold-foil">
               {weddingData.groomFirstName}
