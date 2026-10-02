@@ -67,7 +67,7 @@ export const weddingData: WeddingConfig = {
   brideTamil: "",
   tagline: "School Mate → Soul Mate",
   subTagline: "A Decade of Us (2016 – 2026)",
-  auspiciousSymbol: "ॐ",
+  auspiciousSymbol: "",
   invocation: "",
   invocationTamil: "",
   invitationSubtitle: "Wedding Invitation",

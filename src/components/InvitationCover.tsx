@@ -6,7 +6,6 @@ import {
   KuthuVilakku,
   KolamMotif,
   OrnamentalCorner,
-  PillaiyarSuzhi,
 } from './TraditionalDecor';
 import { playTempleBellChime } from '../utils/audioUtils';
 
@@ -89,9 +88,6 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
 
           {/* Card Content Header */}
           <div className="flex flex-col items-center text-center space-y-4 pt-2">
-            {/* Auspicious Pillaiyar Suzhi */}
-            <PillaiyarSuzhi />
-
             {/* Royal Couple Monogram Crest */}
             <div className="flex justify-center -my-1">
               <div className="relative p-2 rounded-full bg-gradient-to-b from-[#C5A059]/15 via-[#4A0E17]/25 to-transparent border border-[#C5A059]/35 shadow-gold-subtle">
@@ -179,8 +175,8 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
                 <div className="absolute inset-0 bg-gold-shimmer opacity-0 group-hover/btn:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                 {/* Wax seal inspired gold emblem */}
-                <span className="w-5 h-5 rounded-full border border-[#F5DE9C] flex items-center justify-center text-[11px] text-gold-foil bg-[#805F24]/30 font-serif">
-                  ॐ
+                <span className="w-5 h-5 rounded-full border border-[#F5DE9C] flex items-center justify-center text-[10px] text-gold-foil bg-[#805F24]/30 select-none">
+                  ❖
                 </span>
 
                 <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-[0.2em] text-gold-foil">

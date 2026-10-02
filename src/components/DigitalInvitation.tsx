@@ -170,7 +170,6 @@ export interface UniformCeremonyCardProps {
   date: string;
   subDate?: string;
   time: string;
-  venue?: string;
 }
 
 export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
@@ -179,7 +178,6 @@ export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
   date,
   subDate,
   time,
-  venue,
 }) => {
   return (
     <div className="relative w-full rounded-xl p-5 sm:p-6 text-center bg-gradient-to-b from-[#FFFDF9] via-[#FAF4E6] to-[#F5EED8] border-2 border-[#C5A059] shadow-[0_4px_16px_rgba(74,14,23,0.09)] transition-transform duration-300 hover:scale-[1.01]">
@@ -228,15 +226,6 @@ export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
           {time}
         </span>
       </div>
-
-      {/* Ceremony Venue */}
-      {venue && (
-        <div className="relative z-10 pt-3 mt-2.5 border-t border-[#C5A059]/35 flex flex-col items-center">
-          <p className="font-cinzel text-xs sm:text-sm font-bold text-[#3B0811] tracking-wide">
-            {venue}
-          </p>
-        </div>
-      )}
     </div>
   );
 };
@@ -346,7 +335,7 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
               TOP SECTION — INVOCATION & ROYAL GANESHA SEAL
               ======================================================== */}
           <div className="relative z-10 flex flex-col items-center text-center space-y-1.5 pt-1">
-            {/* Sacred Symbol (ॐ) */}
+            {/* Sacred Flourish Motif */}
             <PillaiyarSuzhi className="mb-0.5" />
 
 
@@ -470,7 +459,6 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
               date="Tuesday, 10 November 2026"
               subDate="Auspicious Evening Muhurtham"
               time="7:35 PM – 8:35 PM"
-              venue="Soudamman Kovil Kalyana Mandapam, Bodinayakanur"
             />
 
             {/* Auspicious Divider Between Ceremonies */}
@@ -487,7 +475,6 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
               date="Wednesday, 11 November 2026"
               subDate="Sacred Morning Muhurtham"
               time="9:00 AM – 10:30 AM"
-              venue="Sri Srinivasa Perumal Temple, Bodinayakanur"
             />
           </div>
 

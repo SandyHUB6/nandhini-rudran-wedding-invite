@@ -331,18 +331,13 @@ export const OrnamentalCorner: React.FC<{
   );
 };
 
-// Auspicious Sacred Symbol (ॐ)
+// Auspicious Sacred Flourish Motif
 export const PillaiyarSuzhi: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
-    <div className={`inline-flex flex-col items-center select-none ${className}`}>
-      <span className="font-serif font-bold text-xl md:text-2xl text-gold-foil tracking-wider">
-        ॐ
-      </span>
-      <div className="flex items-center gap-1.5 mt-0.5">
-        <div className="w-4 h-[1px] bg-gradient-to-r from-transparent to-[#C5A059]" />
-        <div className="w-1.5 h-1.5 rotate-45 border border-[#C5A059] bg-[#805F24]/40" />
-        <div className="w-4 h-[1px] bg-gradient-to-l from-transparent to-[#C5A059]" />
-      </div>
+    <div className={`inline-flex items-center justify-center gap-1.5 select-none ${className}`}>
+      <div className="w-5 h-[1px] bg-gradient-to-r from-transparent to-[#C5A059]" />
+      <div className="w-1.5 h-1.5 rotate-45 border border-[#C5A059] bg-[#805F24]/40" />
+      <div className="w-5 h-[1px] bg-gradient-to-l from-transparent to-[#C5A059]" />
     </div>
   );
 };

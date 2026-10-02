@@ -149,7 +149,6 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
           date="Tuesday, 10 November 2026"
           subDate="Auspicious Evening Muhurtham"
           time="7:35 PM – 8:35 PM"
-          venue="Soudamman Kovil Kalyana Mandapam, Bodinayakanur"
         />
 
         <div className="flex items-center justify-center gap-3 py-1">
@@ -164,7 +163,6 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
           date="Wednesday, 11 November 2026"
           subDate="Sacred Morning Muhurtham"
           time="9:00 AM – 10:30 AM"
-          venue="Sri Srinivasa Perumal Temple, Bodinayakanur"
         />
       </div>
 
@@ -376,7 +374,7 @@ export const InvitationReveal: React.FC<InvitationRevealProps> = ({
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="w-7 h-7 sm:w-9 sm:h-9 rounded-full border border-[#F5DE9C] bg-[#420A12] flex items-center justify-center text-[10px] sm:text-xs text-gold-foil shadow-[0_0_20px_rgba(212,175,55,0.85)] font-serif mb-0.5 sm:mb-1"
               >
-                ॐ
+                ❖
               </motion.div>
               <span className="font-cinzel text-[9px] sm:text-[10px] text-gold-foil tracking-widest uppercase">
                 {weddingData.groomFirstName} &amp; {weddingData.brideFirstName}

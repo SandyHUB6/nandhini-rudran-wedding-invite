@@ -42,6 +42,8 @@ export const PhotoMoment: React.FC = () => {
 
     canvas.width = Math.round(rect.width * dpr);
     canvas.height = Math.round(rect.height * dpr);
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
   };
 
   useEffect(() => {
@@ -61,7 +63,7 @@ export const PhotoMoment: React.FC = () => {
     };
   }, []);
 
-  // Trigger sacred Akshadhai shower directly falling over the couple from the center
+  // Trigger sacred Akshadhai shower directly falling over both the bride and groom from top center
   const triggerAkshadhaiOnCouple = () => {
     // Play sacred temple bell blessing chime
     playTempleBellChime();
@@ -73,43 +75,37 @@ export const PhotoMoment: React.FC = () => {
     if (!container) return;
     const rect = container.getBoundingClientRect();
     const width = rect.width;
-    const centerX = width * 0.5;
 
     const newParticles: AkshadhaiParticle[] = [];
     const colors = ['#FFF2B2', '#F9E8B2', '#E5C578', '#D4AF37', '#FFD700', '#C5A059'];
 
-    // All Akshadhai particles fall from the center top
-    for (let i = 0; i < 150; i++) {
+    // Symmetrically shower across BOTH Bride and Groom from top center
+    for (let i = 0; i < 180; i++) {
       // Traditional composition: 65% turmeric rice, 20% jasmine flowers, 10% rose petals, 5% gold specks
       const rand = Math.random();
       const type: 'rice' | 'jasmine' | 'rose' | 'gold' =
         rand < 0.65 ? 'rice' : rand < 0.85 ? 'jasmine' : rand < 0.95 ? 'rose' : 'gold';
 
-      // Center origin with a tight spawn spread right at top center
-      const spawnSpread = (Math.random() - 0.5) * (width * 0.22);
-      const startX = centerX + spawnSpread;
-
-      // Natural outward cascading drift from the center
-      const driftOutward = (spawnSpread / (width * 0.22)) * 1.5;
-      const randomVx = (Math.random() - 0.5) * 1.6;
+      // Symmetrically covers BOTH Bride (left) and Groom (right) evenly across 20% to 80% width
+      const startX = width * 0.20 + Math.random() * (width * 0.60);
 
       newParticles.push({
         x: startX,
-        y: Math.random() * -70 - 10,
-        vx: driftOutward + randomVx,
-        vy: Math.random() * 2.4 + 2.2,
+        y: Math.random() * -80 - 10,
+        vx: (Math.random() - 0.5) * 1.4,
+        vy: Math.random() * 2.2 + 2.0,
         size:
           type === 'rice'
-            ? Math.random() * 0.9 + 1.5 // small delicate turmeric rice grains (1.5 - 2.4)
+            ? Math.random() * 0.7 + 1.3 // delicate tiny turmeric rice grain (1.3 - 2.0px)
             : type === 'jasmine'
-            ? Math.random() * 1.4 + 2.6 // small white jasmine blossoms (2.6 - 4.0)
+            ? Math.random() * 1.0 + 2.2 // tiny white jasmine blossom (2.2 - 3.2px)
             : type === 'rose'
-            ? Math.random() * 1.5 + 2.8 // small rose petal flecks (2.8 - 4.3)
-            : Math.random() * 0.8 + 1.2, // fine gold flecks (1.2 - 2.0)
+            ? Math.random() * 1.2 + 2.4 // petite temple rose petal fleck (2.4 - 3.6px)
+            : Math.random() * 0.6 + 1.0, // micro gold foil fleck (1.0 - 1.6px)
         rot: Math.random() * 360,
-        vRot: (Math.random() - 0.5) * 5,
+        vRot: (Math.random() - 0.5) * 4,
         sway: Math.random() * Math.PI * 2,
-        vSway: Math.random() * 0.06 + 0.03,
+        vSway: Math.random() * 0.05 + 0.03,
         color: colors[Math.floor(Math.random() * colors.length)],
         type,
         opacity: 1,
@@ -283,7 +279,7 @@ export const PhotoMoment: React.FC = () => {
           {/* DEDICATED AKSHADHAI CANVAS DIRECTLY OVER THE COUPLE */}
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 pointer-events-none z-20"
+            className="absolute inset-0 w-full h-full pointer-events-none z-20"
           />
 
           {/* Top-Right Interactive Prompt Overlay on Photograph */}
