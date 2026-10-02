@@ -61,8 +61,8 @@ export const PhotoMoment: React.FC = () => {
     };
   }, []);
 
-  // Trigger sacred Akshadhai shower directly falling over the couple
-  const triggerAkshadhaiOnCouple = (clickX?: number, clickY?: number) => {
+  // Trigger sacred Akshadhai shower directly falling over the couple from the center
+  const triggerAkshadhaiOnCouple = () => {
     // Play sacred temple bell blessing chime
     playTempleBellChime();
 
@@ -73,31 +73,39 @@ export const PhotoMoment: React.FC = () => {
     if (!container) return;
     const rect = container.getBoundingClientRect();
     const width = rect.width;
+    const centerX = width * 0.5;
 
     const newParticles: AkshadhaiParticle[] = [];
     const colors = ['#FFF2B2', '#F9E8B2', '#E5C578', '#D4AF37', '#FFD700', '#C5A059'];
 
-    // 1. Broad rainfall over couple's crowns, shoulders, and garlands (120 particles)
-    for (let i = 0; i < 120; i++) {
-      // Traditional composition: 60% turmeric rice, 25% jasmine flowers, 10% rose petals, 5% gold specks
+    // All Akshadhai particles fall from the center top
+    for (let i = 0; i < 150; i++) {
+      // Traditional composition: 65% turmeric rice, 20% jasmine flowers, 10% rose petals, 5% gold specks
       const rand = Math.random();
       const type: 'rice' | 'jasmine' | 'rose' | 'gold' =
-        rand < 0.6 ? 'rice' : rand < 0.85 ? 'jasmine' : rand < 0.95 ? 'rose' : 'gold';
+        rand < 0.65 ? 'rice' : rand < 0.85 ? 'jasmine' : rand < 0.95 ? 'rose' : 'gold';
+
+      // Center origin with a tight spawn spread right at top center
+      const spawnSpread = (Math.random() - 0.5) * (width * 0.22);
+      const startX = centerX + spawnSpread;
+
+      // Natural outward cascading drift from the center
+      const driftOutward = (spawnSpread / (width * 0.22)) * 1.5;
+      const randomVx = (Math.random() - 0.5) * 1.6;
 
       newParticles.push({
-        // Concentrated across couple's seated width (15% to 85%)
-        x: width * 0.15 + Math.random() * (width * 0.7),
-        y: Math.random() * -80 - 15,
-        vx: (Math.random() - 0.5) * 1.8,
-        vy: Math.random() * 2.6 + 2.2,
+        x: startX,
+        y: Math.random() * -70 - 10,
+        vx: driftOutward + randomVx,
+        vy: Math.random() * 2.4 + 2.2,
         size:
           type === 'rice'
-            ? Math.random() * 3 + 2.6
+            ? Math.random() * 0.9 + 1.5 // small delicate turmeric rice grains (1.5 - 2.4)
             : type === 'jasmine'
-            ? Math.random() * 6 + 6
+            ? Math.random() * 1.4 + 2.6 // small white jasmine blossoms (2.6 - 4.0)
             : type === 'rose'
-            ? Math.random() * 7 + 7
-            : Math.random() * 3 + 2,
+            ? Math.random() * 1.5 + 2.8 // small rose petal flecks (2.8 - 4.3)
+            : Math.random() * 0.8 + 1.2, // fine gold flecks (1.2 - 2.0)
         rot: Math.random() * 360,
         vRot: (Math.random() - 0.5) * 5,
         sway: Math.random() * Math.PI * 2,
@@ -106,30 +114,6 @@ export const PhotoMoment: React.FC = () => {
         type,
         opacity: 1,
       });
-    }
-
-    // 2. If user tapped on a specific spot on the photo, add an intimate localized burst (25 particles)
-    if (clickX !== undefined && clickY !== undefined) {
-      for (let i = 0; i < 25; i++) {
-        const rand = Math.random();
-        const type: 'rice' | 'jasmine' | 'rose' | 'gold' =
-          rand < 0.5 ? 'rice' : rand < 0.8 ? 'jasmine' : 'rose';
-
-        newParticles.push({
-          x: clickX + (Math.random() - 0.5) * 35,
-          y: clickY + (Math.random() - 0.5) * 25,
-          vx: (Math.random() - 0.5) * 3.5,
-          vy: Math.random() * 2.0 + 1.2,
-          size: type === 'rice' ? 3.5 : 7,
-          rot: Math.random() * 360,
-          vRot: (Math.random() - 0.5) * 6,
-          sway: Math.random() * Math.PI * 2,
-          vSway: 0.05,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          type,
-          opacity: 1,
-        });
-      }
     }
 
     particlesRef.current = [...particlesRef.current, ...newParticles];
@@ -190,12 +174,12 @@ export const PhotoMoment: React.FC = () => {
         ctx.fillStyle = p.color;
         ctx.fill();
         ctx.strokeStyle = '#8B5A10';
-        ctx.lineWidth = 0.6;
+        ctx.lineWidth = 0.35;
         ctx.stroke();
 
         // Shimmer glint on rice grain
         ctx.beginPath();
-        ctx.arc(-p.size * 0.1, -p.size * 0.4, p.size * 0.2, 0, Math.PI * 2);
+        ctx.arc(-p.size * 0.1, -p.size * 0.3, p.size * 0.15, 0, Math.PI * 2);
         ctx.fillStyle = '#FFFFFF';
         ctx.fill();
       } else if (p.type === 'jasmine') {
@@ -223,7 +207,7 @@ export const PhotoMoment: React.FC = () => {
         ctx.fillStyle = '#9B1B30';
         ctx.fill();
         ctx.strokeStyle = '#5E0E1B';
-        ctx.lineWidth = 0.5;
+        ctx.lineWidth = 0.35;
         ctx.stroke();
       } else {
         // Shimmering antique gold foil flake
@@ -268,11 +252,8 @@ export const PhotoMoment: React.FC = () => {
             ======================================================== */}
         <div
           ref={containerRef}
-          onClick={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const clickY = e.clientY - rect.top;
-            triggerAkshadhaiOnCouple(clickX, clickY);
+          onClick={() => {
+            triggerAkshadhaiOnCouple();
           }}
           className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] w-full overflow-hidden rounded-xl border border-[#C5A059]/40 cursor-pointer group/photo select-none"
           role="button"
