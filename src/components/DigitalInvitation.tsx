@@ -435,14 +435,6 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
               <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
                 {weddingData.groomName}
               </h1>
-              <div className="flex flex-col items-center space-y-0.5 pt-0.5">
-                <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-wider text-[#805F24]">
-                  {weddingData.groomEducation}
-                </span>
-                <span className="font-cormorant italic text-sm sm:text-base text-[#5A101C] font-medium tracking-wide">
-                  {weddingData.groomProfession} • {weddingData.groomDesignation}
-                </span>
-              </div>
             </div>
 
             {/* Sacred Lotus Knot */}
@@ -464,14 +456,6 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
               <h2 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
                 {weddingData.brideName}
               </h2>
-              <div className="flex flex-col items-center space-y-0.5 pt-0.5">
-                <span className="font-cinzel text-xs sm:text-sm font-semibold tracking-wider text-[#805F24]">
-                  {weddingData.brideEducation}
-                </span>
-                <span className="font-cormorant italic text-sm sm:text-base text-[#5A101C] font-medium tracking-wide">
-                  {weddingData.brideDesignation}, {weddingData.brideCompany}
-                </span>
-              </div>
             </div>
 
             {/* Main Invitation Copy (Richer & Soulful) */}

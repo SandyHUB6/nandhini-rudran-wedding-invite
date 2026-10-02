@@ -16,15 +16,15 @@ export interface Ceremony {
 export interface WeddingConfig {
   groomName: string;
   groomFirstName: string;
-  groomEducation: string;
-  groomProfession: string;
-  groomDesignation: string;
+  groomEducation?: string;
+  groomProfession?: string;
+  groomDesignation?: string;
   groomTamil?: string;
   brideName: string;
   brideFirstName: string;
-  brideEducation: string;
-  brideDesignation: string;
-  brideCompany: string;
+  brideEducation?: string;
+  brideDesignation?: string;
+  brideCompany?: string;
   brideTamil?: string;
   tagline: string;
   subTagline: string;
@@ -61,15 +61,9 @@ export interface WeddingConfig {
 export const weddingData: WeddingConfig = {
   groomName: "V. Rudran",
   groomFirstName: "Rudran",
-  groomEducation: "B.E. (EEE)",
-  groomProfession: "Marine / ETO",
-  groomDesignation: "Marine Engineer",
   groomTamil: "",
   brideName: "G. Nandhini",
   brideFirstName: "Nandhini",
-  brideEducation: "B.E. (CSE)",
-  brideDesignation: "Senior Software Engineer",
-  brideCompany: "Capgemini, Chennai",
   brideTamil: "",
   tagline: "School Mate → Soul Mate",
   subTagline: "A Decade of Us (2016 – 2026)",

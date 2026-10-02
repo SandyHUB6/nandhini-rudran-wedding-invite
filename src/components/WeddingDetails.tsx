@@ -20,9 +20,9 @@ export const WeddingDetails: React.FC = () => {
 
 With the divine grace of the Almighty and the heartfelt blessings of our beloved elders,
 
-*V. RUDRAN* (Marine / ETO)
+*V. RUDRAN*
        &
-*G. NANDHINI* (Senior Software Engineer)
+*G. NANDHINI*
 
 warmly invite you and your family to join us as we exchange our sacred vows and begin our new chapter together.
 
