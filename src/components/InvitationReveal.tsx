@@ -106,11 +106,6 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
 
         {/* Groom Details */}
         <div className="space-y-1 sm:space-y-1.5">
-          <div className="inline-flex items-center justify-center px-3 sm:px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
-            <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#805F24]">
-              Groom
-            </span>
-          </div>
           <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
             {weddingData.groomName}
           </h1>
@@ -127,11 +122,6 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
 
         {/* Bride Details */}
         <div className="space-y-1 sm:space-y-1.5">
-          <div className="inline-flex items-center justify-center px-3 sm:px-3.5 py-0.5 rounded-full bg-[#3B0811]/10 border border-[#C5A059]/60 mb-0.5">
-            <span className="font-cinzel text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#805F24]">
-              Bride
-            </span>
-          </div>
           <h2 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
             {weddingData.brideName}
           </h2>
