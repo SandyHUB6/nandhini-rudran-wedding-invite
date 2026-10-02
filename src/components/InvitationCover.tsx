@@ -53,10 +53,10 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({ onOpen, isOpen
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{
           opacity: isOpening ? 0 : 1,
-          y: 0,
-          scale: 1,
+          y: isOpening ? -8 : 0,
+          scale: isOpening ? 0.98 : 1,
         }}
-        transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-20 w-full max-w-[390px] sm:max-w-[480px] md:max-w-[520px] perspective-1000 my-auto"
       >
         {/* Envelope / Pocket Card Container */}

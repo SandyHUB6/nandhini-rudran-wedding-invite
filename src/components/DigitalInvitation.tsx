@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Navigation } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
 import { KolamMotif, PillaiyarSuzhi, MaavilaiThoranam, KuthuVilakku } from './TraditionalDecor';
@@ -265,14 +265,155 @@ export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
   );
 };
 
-export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPreUnrolled = false }) => {
+/**
+ * 3D Ceremonial Folder Flaps that flip open as the scroll unrolls
+ */
+export const CeremonialFlaps: React.FC<{ isMobile: boolean; isLandscape: boolean }> = ({
+  isMobile,
+  isLandscape,
+}) => {
+  return (
+    <div className="absolute top-0 inset-x-0 flex flex-col items-center z-40 pointer-events-none">
+      {/* TOP CEREMONIAL FLAP (Flips upward in 3D) */}
+      <motion.div
+        initial={{ rotateX: 0, opacity: 1 }}
+        animate={{
+          rotateX: isMobile ? (isLandscape ? -108 : -115) : -142,
+          opacity: [1, 1, 0],
+        }}
+        transition={{
+          duration: 0.85,
+          delay: 0.15,
+          ease: [0.35, 0, 0.15, 1],
+        }}
+        style={{
+          transformOrigin: 'top center',
+          transformStyle: 'preserve-3d',
+          willChange: 'transform, opacity',
+        }}
+        className={`relative w-full ${
+          isMobile
+            ? 'max-w-[340px] sm:max-w-[360px] h-24'
+            : 'max-w-[440px] sm:max-w-[500px] h-32 sm:h-36'
+        } rounded-t-xl bg-gradient-to-b from-[#3B0811] via-[#2A050B] to-[#1E0307] border-t-2 border-x-2 border-[#C5A059] ${
+          isMobile ? 'shadow-lg p-3' : 'shadow-2xl p-4'
+        } flex flex-col items-center justify-center overflow-hidden`}
+      >
+        {/* Gold foil border rim */}
+        <div className="absolute inset-1 sm:inset-1.5 rounded-t-lg border border-[#C5A059]/60 pointer-events-none" />
+
+        {/* Underside Golden Silk Brocade (Revealed as flap flips) */}
+        <div
+          style={{ transform: 'rotateY(180deg)' }}
+          className="absolute inset-0 bg-gradient-to-b from-[#8A6421] via-[#D4AF37] to-[#805F24] opacity-90 backface-hidden"
+        />
+
+        {/* Pillaiyar Suzhi & Sacred Gold Crest */}
+        <div className="relative z-10 flex flex-col items-center -mt-1">
+          <PillaiyarSuzhi />
+          <span className="font-cinzel text-[8px] sm:text-[10px] text-gold-foil tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold mt-1">
+            Royal Wedding Patrikai
+          </span>
+        </div>
+
+        {/* Flap Bottom Gold Scallop Trim */}
+        <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#FFE8A3] to-transparent" />
+      </motion.div>
+
+      {/* LOWER POCKET / FLAP (Gently drops down & folds open) */}
+      <motion.div
+        initial={{ rotateX: 0, y: 0, opacity: 1 }}
+        animate={{
+          rotateX: isMobile ? (isLandscape ? 26 : 32) : 45,
+          y: isMobile ? (isLandscape ? 12 : 18) : 35,
+          opacity: [1, 0.7, 0],
+        }}
+        transition={{
+          duration: 0.75,
+          delay: 0.2,
+          ease: [0.35, 0, 0.15, 1],
+        }}
+        style={{
+          transformOrigin: 'bottom center',
+          willChange: 'transform, opacity',
+        }}
+        className={`relative w-full ${
+          isMobile
+            ? 'max-w-[340px] sm:max-w-[360px] h-20 sm:h-24'
+            : 'max-w-[440px] sm:max-w-[500px] h-28 sm:h-32'
+        } rounded-b-xl bg-gradient-to-b from-[#2A050B] to-[#1A0205] border-b-2 border-x-2 border-[#C5A059] ${
+          isMobile ? 'p-2' : 'p-3'
+        } flex flex-col items-center justify-center shadow-xl -mt-0.5 overflow-hidden`}
+      >
+        <div className="absolute inset-1 sm:inset-1.5 rounded-b-lg border border-[#C5A059]/40 pointer-events-none" />
+
+        {/* Golden Wax Seal Opening Flare */}
+        <motion.div
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.2, 0.8], opacity: [1, 1, 0] }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="w-7 h-7 sm:w-9 sm:h-9 rounded-full border border-[#F5DE9C] bg-[#420A12] flex items-center justify-center text-[10px] sm:text-xs text-gold-foil shadow-[0_0_20px_rgba(212,175,55,0.85)] font-serif mb-0.5 sm:mb-1"
+        >
+          ❖
+        </motion.div>
+        <span className="font-cinzel text-[9px] sm:text-[10px] text-gold-foil tracking-widest uppercase">
+          {weddingData.groomFirstName} &amp; {weddingData.brideFirstName}
+        </span>
+      </motion.div>
+    </div>
+  );
+};
+
+export interface DigitalInvitationProps {
+  isOpening?: boolean;
+  isOpen?: boolean;
+  onAnimationComplete?: () => void;
+  isPreUnrolled?: boolean;
+}
+
+export const DigitalInvitation: React.FC<DigitalInvitationProps> = ({
+  isOpening = false,
+  isOpen = false,
+  onAnimationComplete,
+  isPreUnrolled = false,
+}) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
 
-  // Subtle physical paper tilt responding to mouse / touch movement
+  useEffect(() => {
+    const checkViewport = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      setIsMobile(w < 640);
+      setIsLandscape(w > h && h < 520);
+    };
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    window.addEventListener('orientationchange', checkViewport);
+    return () => {
+      window.removeEventListener('resize', checkViewport);
+      window.removeEventListener('orientationchange', checkViewport);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isOpening) {
+      const durationMs = prefersReducedMotion ? 400 : 2050;
+      const timer = setTimeout(() => {
+        onAnimationComplete?.();
+      }, durationMs);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpening, onAnimationComplete, prefersReducedMotion]);
+
+  // Subtle physical paper tilt responding to mouse / touch movement (only when fully settled)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isOpening) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -285,10 +426,22 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
     setRotateY(0);
   };
 
+  const isRevealed = isOpening || isOpen || isPreUnrolled;
+
   return (
-    <section className="relative pt-14 sm:pt-20 pb-20 sm:pb-28 px-3 sm:px-6 w-full flex flex-col items-center justify-center bg-[#1A0205] overflow-hidden">
+    <section className="relative pt-12 sm:pt-20 pb-20 sm:pb-28 px-3 sm:px-6 w-full flex flex-col items-center justify-center bg-[#1A0205] overflow-hidden">
       {/* Background Sacred Atmosphere */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(74,14,23,0.85)_0%,rgba(26,2,5,0.98)_85%)]" />
+
+      {/* Soft Ambient Golden Light that gently breathes as card opens */}
+      {isOpening && !prefersReducedMotion && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0.45, 0.2] }}
+          transition={{ duration: 2.0, times: [0, 0.35, 1], ease: 'easeInOut' }}
+          className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.22)_0%,rgba(66,10,18,0.5)_60%,transparent_90%)] pointer-events-none z-0"
+        />
+      )}
 
       {/* Top Auspicious Maavilai Thoranam draped across Mandapam */}
       <div className="absolute top-0 left-0 right-0 z-30 pointer-events-none">
@@ -303,12 +456,11 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
         <KuthuVilakku size="lg" lit={true} />
       </div>
 
-
       {/* THE ANTIQUE ROYAL SCROLL WRAPPER */}
       <motion.div
-        initial={isPreUnrolled ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 25, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: isPreUnrolled ? 0.3 : 1.1, ease: [0.22, 1, 0.36, 1] }}
+        initial={isPreUnrolled || isOpen ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.98 }}
+        animate={{ opacity: isRevealed ? 1 : 0, y: 0, scale: 1 }}
+        transition={{ duration: isPreUnrolled || isOpen ? 0.3 : 0.8, ease: [0.22, 1, 0.36, 1] }}
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -318,31 +470,40 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
         }}
         className="relative z-10 w-full max-w-[560px] sm:max-w-[620px] flex flex-col items-center select-none"
       >
+        {/* 0. 3D CEREMONIAL OPENING FLAPS */}
+        {isOpening && !prefersReducedMotion && (
+          <CeremonialFlaps isMobile={isMobile} isLandscape={isLandscape} />
+        )}
+
         {/* 1. TOP CARVED BRASS & TEAK ROLLER */}
         <ScrollRoller position="top" />
 
-        {/* 2. UNROLLING PARCHMENT CONTAINER (Animated Unfolding) */}
+        {/* 2. UNROLLING PARCHMENT CONTAINER */}
         <motion.div
-          initial={isPreUnrolled ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0.85 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          transition={isPreUnrolled ? { duration: 0 } : {
-            duration: 1.8,
-            delay: 0.25,
-            ease: [0.16, 1, 0.3, 1], // Royal smooth unroll curve
-          }}
+          initial={isPreUnrolled || isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0.95 }}
+          animate={{ height: isRevealed ? 'auto' : 0, opacity: 1 }}
+          transition={
+            isPreUnrolled || (!isOpening && isOpen)
+              ? { duration: 0 }
+              : {
+                  duration: prefersReducedMotion ? 0.4 : 1.6,
+                  delay: prefersReducedMotion ? 0 : 0.35,
+                  ease: [0.16, 1, 0.3, 1], // Royal smooth unroll curve
+                }
+          }
           className="relative w-full overflow-hidden origin-top"
         >
-          {/* Unfolding Golden Light Sheen */}
-          {!isPreUnrolled && (
+          {/* Sweeping Golden Light Sheen down unrolling parchment */}
+          {isOpening && !prefersReducedMotion && (
             <motion.div
               initial={{ top: '0%', opacity: 0.9 }}
               animate={{ top: '100%', opacity: 0 }}
               transition={{
-                duration: 1.8,
-                delay: 0.25,
+                duration: 1.6,
+                delay: 0.35,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#FFE8A3]/30 to-transparent pointer-events-none z-30"
+              className="absolute inset-x-0 h-24 sm:h-28 bg-gradient-to-b from-transparent via-[#FFE8A3]/35 to-transparent pointer-events-none z-30"
             />
           )}
 
