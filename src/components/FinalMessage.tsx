@@ -64,9 +64,6 @@ export const FinalMessage: React.FC = () => {
           <p className="font-cormorant italic text-base sm:text-lg text-[#E5C578]">
             We look forward to celebrating with you.
           </p>
-          <p className="text-[11px] font-sans tracking-widest text-[#FAF7F0]/40 uppercase pt-4">
-            Bodinayakanur, Theni District, Tamil Nadu
-          </p>
         </motion.div>
 
         {/* Center Flickering Diya Flame */}
