@@ -93,46 +93,6 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
         />
       </div>
 
-      {/* COUPLE NAMES & INVITATION */}
-      <div className="relative z-10 text-center space-y-2 py-4 sm:py-5 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
-        {/* Groom Details */}
-        <div className="space-y-1 sm:space-y-1.5">
-          <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-            {weddingData.groomName}
-          </h1>
-        </div>
-
-        {/* Knot */}
-        <div className="flex items-center justify-center gap-3 my-2 sm:my-2.5">
-          <span className="w-10 sm:w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
-          <span className="font-cormorant italic text-xl sm:text-3xl text-[#C5A059] font-light select-none">
-            &
-          </span>
-          <span className="w-10 sm:w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
-        </div>
-
-        {/* Bride Details */}
-        <div className="space-y-1 sm:space-y-1.5">
-          <h2 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-            {weddingData.brideName}
-          </h2>
-        </div>
-
-        {/* Main Copy */}
-        <div className="pt-3 pb-1 max-w-lg mx-auto px-2 sm:px-3 space-y-2">
-          <p className="font-cormorant italic text-sm sm:text-base md:text-lg text-[#3B0811] leading-relaxed font-medium">
-            As we unite our hearts and exchange our sacred vows,
-            <br className="hidden sm:inline" />
-            {' '}we warmly invite you to share in our joy and celebrations.
-          </p>
-          <p className="font-cormorant italic text-xs sm:text-sm md:text-base text-[#6B1422] leading-relaxed font-semibold">
-            Please join us at our wedding, and shower us
-            <br className="hidden sm:inline" />
-            {' '}with your love, prayers, and heartfelt blessings.
-          </p>
-        </div>
-      </div>
-
       {/* CEREMONIES */}
       <div className="relative z-10 space-y-3 sm:space-y-4 pt-2 sm:pt-3">
         <div className="flex items-center justify-center gap-2 mb-2 text-center">
@@ -144,11 +104,14 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
         </div>
 
         <UniformCeremonyCard
-          badge="ENGAGEMENT & RING CEREMONY"
-          title="Engagement & Ring Ceremony"
-          date="Tuesday, 10 November 2026"
-          subDate="Auspicious Evening Muhurtham"
-          time="7:35 PM – 8:35 PM"
+          badge={weddingData.ceremonies[0].badge}
+          title={weddingData.ceremonies[0].name}
+          date={weddingData.ceremonies[0].date}
+          subDate={weddingData.ceremonies[0].tamilDate}
+          time={weddingData.ceremonies[0].time}
+          venueName={weddingData.ceremonies[0].venue}
+          address={weddingData.ceremonies[0].address}
+          mapUrl={weddingData.ceremonies[0].mapUrl}
         />
 
         <div className="flex items-center justify-center gap-3 py-1">
@@ -158,11 +121,14 @@ const ScrollParchmentBody: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
         </div>
 
         <UniformCeremonyCard
-          badge="WEDDING CEREMONY"
-          title="Wedding Ceremony"
-          date="Wednesday, 11 November 2026"
-          subDate="Sacred Morning Muhurtham"
-          time="9:00 AM – 10:30 AM"
+          badge={weddingData.ceremonies[1].badge}
+          title={weddingData.ceremonies[1].name}
+          date={weddingData.ceremonies[1].date}
+          subDate={weddingData.ceremonies[1].tamilDate}
+          time={weddingData.ceremonies[1].time}
+          venueName={weddingData.ceremonies[1].venue}
+          address={weddingData.ceremonies[1].address}
+          mapUrl={weddingData.ceremonies[1].mapUrl}
         />
       </div>
 

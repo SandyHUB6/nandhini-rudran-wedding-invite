@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Navigation } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
 import { KolamMotif, PillaiyarSuzhi, MaavilaiThoranam, KuthuVilakku } from './TraditionalDecor';
 
@@ -170,6 +171,9 @@ export interface UniformCeremonyCardProps {
   date: string;
   subDate?: string;
   time: string;
+  venueName?: string;
+  address?: string;
+  mapUrl?: string;
 }
 
 export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
@@ -178,6 +182,9 @@ export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
   date,
   subDate,
   time,
+  venueName,
+  address,
+  mapUrl,
 }) => {
   return (
     <div className="relative w-full rounded-xl p-5 sm:p-6 text-center bg-gradient-to-b from-[#FFFDF9] via-[#FAF4E6] to-[#F5EED8] border-2 border-[#C5A059] shadow-[0_4px_16px_rgba(74,14,23,0.09)] transition-transform duration-300 hover:scale-[1.01]">
@@ -220,12 +227,40 @@ export const UniformCeremonyCard: React.FC<UniformCeremonyCardProps> = ({
       )}
 
       {/* Auspicious Time Window (Identical Golden Box) */}
-      <div className="relative z-10 mt-3 inline-flex items-center justify-center gap-2 px-5 py-1.5 rounded-full bg-gradient-to-r from-[#EFE1C6] via-[#FDFBF7] to-[#EFE1C6] border border-[#C5A059] shadow-inner">
+      <div className="relative z-10 mt-2.5 inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#EFE1C6] via-[#FDFBF7] to-[#EFE1C6] border border-[#C5A059] shadow-inner">
         <span className="text-xs select-none">🪔</span>
         <span className="font-cinzel text-xs sm:text-sm font-extrabold text-[#420A12] tracking-wider">
           {time}
         </span>
       </div>
+
+      {/* Ceremony Venue & Google Maps Navigation */}
+      {venueName && (
+        <div className="relative z-10 pt-3 mt-3 border-t border-[#C5A059]/40 w-full flex flex-col items-center space-y-1.5">
+          <div className="flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-[#3B0811] font-cinzel">
+            <span className="text-xs">📍</span>
+            <span>{venueName}</span>
+          </div>
+          {address && (
+            <p className="font-cormorant text-xs sm:text-sm text-[#4A0E17]/85 leading-relaxed px-2 max-w-sm">
+              {address}
+            </p>
+          )}
+          {mapUrl && (
+            <div className="pt-1.5">
+              <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/map inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#3B0811] via-[#5A101C] to-[#3B0811] border border-[#C5A059] text-gold-foil hover:text-[#FAF7F0] shadow-sm hover:shadow-gold-subtle transition-all duration-300 font-cinzel text-[10px] sm:text-xs font-bold tracking-wider uppercase"
+              >
+                <Navigation className="w-3.5 h-3.5 text-[#E5C578] group-hover/map:scale-110 transition-transform" />
+                <span>Open in Google Maps</span>
+              </a>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
@@ -398,48 +433,6 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
           </div>
 
           {/* ========================================================
-              COUPLE NAMES & INVITATION — ROYAL PATRIYEGA TYPOGRAPHY
-              ======================================================== */}
-          <div className="relative z-10 text-center space-y-2 py-5 border-y-2 border-double border-[#C5A059] my-4 bg-gradient-to-b from-[#F7EEDD]/80 via-[#FDFBF7]/90 to-[#F7EEDD]/80 rounded-lg shadow-sm">
-            {/* Groom Details */}
-            <div className="space-y-1 sm:space-y-1.5">
-              <h1 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-                {weddingData.groomName}
-              </h1>
-            </div>
-
-            {/* Sacred Lotus Knot */}
-            <div className="flex items-center justify-center gap-3 my-2 sm:my-2.5">
-              <span className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
-              <span className="font-cormorant italic text-2xl sm:text-3xl text-[#C5A059] font-light select-none">
-                &
-              </span>
-              <span className="w-14 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
-            </div>
-
-            {/* Bride Details */}
-            <div className="space-y-1 sm:space-y-1.5">
-              <h2 className="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#35070E] drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
-                {weddingData.brideName}
-              </h2>
-            </div>
-
-            {/* Main Invitation Copy (Richer & Soulful) */}
-            <div className="pt-3.5 pb-1 max-w-lg mx-auto px-3 space-y-2">
-              <p className="font-cormorant italic text-base sm:text-lg text-[#3B0811] leading-relaxed font-medium">
-                As we unite our hearts and exchange our sacred vows,
-                <br className="hidden sm:inline" />
-                we warmly invite you to share in our joy and celebrations.
-              </p>
-              <p className="font-cormorant italic text-sm sm:text-base text-[#6B1422] leading-relaxed font-semibold">
-                Please join us at our wedding, and shower us
-                <br className="hidden sm:inline" />
-                with your love, prayers, and heartfelt blessings.
-              </p>
-            </div>
-          </div>
-
-          {/* ========================================================
               CEREMONIES & SCHEDULE (100% UNIFORM CEREMONY CARDS)
               ======================================================== */}
           <div className="relative z-10 space-y-4 pt-3">
@@ -454,11 +447,14 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
 
             {/* Ceremony 1: Engagement & Ring Ceremony */}
             <UniformCeremonyCard
-              badge="ENGAGEMENT & RING CEREMONY"
-              title="Engagement & Ring Ceremony"
-              date="Tuesday, 10 November 2026"
-              subDate="Auspicious Evening Muhurtham"
-              time="7:35 PM – 8:35 PM"
+              badge={weddingData.ceremonies[0].badge}
+              title={weddingData.ceremonies[0].name}
+              date={weddingData.ceremonies[0].date}
+              subDate={weddingData.ceremonies[0].tamilDate}
+              time={weddingData.ceremonies[0].time}
+              venueName={weddingData.ceremonies[0].venue}
+              address={weddingData.ceremonies[0].address}
+              mapUrl={weddingData.ceremonies[0].mapUrl}
             />
 
             {/* Auspicious Divider Between Ceremonies */}
@@ -470,11 +466,14 @@ export const DigitalInvitation: React.FC<{ isPreUnrolled?: boolean }> = ({ isPre
 
             {/* Ceremony 2: Wedding Ceremony */}
             <UniformCeremonyCard
-              badge="WEDDING CEREMONY"
-              title="Wedding Ceremony"
-              date="Wednesday, 11 November 2026"
-              subDate="Sacred Morning Muhurtham"
-              time="9:00 AM – 10:30 AM"
+              badge={weddingData.ceremonies[1].badge}
+              title={weddingData.ceremonies[1].name}
+              date={weddingData.ceremonies[1].date}
+              subDate={weddingData.ceremonies[1].tamilDate}
+              time={weddingData.ceremonies[1].time}
+              venueName={weddingData.ceremonies[1].venue}
+              address={weddingData.ceremonies[1].address}
+              mapUrl={weddingData.ceremonies[1].mapUrl}
             />
           </div>
 

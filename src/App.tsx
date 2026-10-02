@@ -5,7 +5,6 @@ import { InvitationReveal } from './components/InvitationReveal';
 import { DigitalInvitation } from './components/DigitalInvitation';
 import { Countdown } from './components/Countdown';
 import { PhotoMoment } from './components/PhotoMoment';
-import { WeddingDetails } from './components/WeddingDetails';
 import { FinalMessage } from './components/FinalMessage';
 import { MusicController } from './components/MusicController';
 import { PetalCanvas } from './components/PetalCanvas';
@@ -76,10 +75,7 @@ export function App() {
             {/* 4. Editorial Cinematic Couple Photograph with Integrated Akshadhai Shower */}
             <PhotoMoment />
 
-            {/* 5. Venue Location, Google Maps & WhatsApp Share Hub */}
-            <WeddingDetails />
-
-            {/* 6. Poetic Closing & Sacred Diya */}
+            {/* 5. Poetic Closing & Sacred Diya */}
             <FinalMessage />
           </motion.div>
         )}
