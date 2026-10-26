@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Navigation } from 'lucide-react';
+import { Navigation, Calendar } from 'lucide-react';
 import { weddingData } from '../config/weddingData';
 import { KolamMotif, PillaiyarSuzhi, MaavilaiThoranam, KuthuVilakku } from './TraditionalDecor';
 
@@ -426,6 +426,44 @@ export const DigitalInvitation: React.FC<DigitalInvitationProps> = ({
     setRotateY(0);
   };
 
+  // Google Calendar URL
+  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+    weddingData.calendarEvent.title
+  )}&dates=${weddingData.calendarEvent.startDate}/${weddingData.calendarEvent.endDate}&details=${encodeURIComponent(
+    weddingData.calendarEvent.description
+  )}&location=${encodeURIComponent(weddingData.calendarEvent.location)}`;
+
+  // Generate .ics download for Apple Calendar / Outlook
+  const downloadIcs = () => {
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Rudran & Nandhini Wedding//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      `SUMMARY:${weddingData.calendarEvent.title}`,
+      `DESCRIPTION:${weddingData.calendarEvent.description}`,
+      `LOCATION:${weddingData.calendarEvent.location}`,
+      `DTSTART:${weddingData.calendarEvent.startDate}`,
+      `DTEND:${weddingData.calendarEvent.endDate}`,
+      'STATUS:CONFIRMED',
+      'SEQUENCE:0',
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'rudran-nandhini-wedding.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const isRevealed = isOpening || isOpen || isPreUnrolled;
 
   return (
@@ -636,6 +674,27 @@ export const DigitalInvitation: React.FC<DigitalInvitationProps> = ({
               address={weddingData.ceremonies[1].address}
               mapUrl={weddingData.ceremonies[1].mapUrl}
             />
+
+            {/* Calendar Reminder Action */}
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+              <a
+                href={googleCalendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#C5A059] bg-gradient-to-r from-[#FAF5E8] to-[#F5EAD4] hover:bg-[#F0DEBD] text-[#3B0811] hover:text-[#5A101C] transition-all duration-300 font-cinzel text-xs font-bold tracking-wider uppercase shadow-sm"
+              >
+                <Calendar className="w-3.5 h-3.5 text-[#805F24]" />
+                <span>Add to Google Calendar</span>
+              </a>
+              <button
+                type="button"
+                onClick={downloadIcs}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#C5A059]/60 hover:border-[#C5A059] bg-transparent hover:bg-[#F5EAD4]/50 text-[#5A101C] transition-all duration-300 font-cinzel text-xs font-semibold tracking-wider uppercase"
+              >
+                <Calendar className="w-3.5 h-3.5 text-[#805F24]" />
+                <span>Download Apple / .ICS</span>
+              </button>
+            </div>
           </div>
 
           {/* Closing Note */}

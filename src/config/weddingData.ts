@@ -84,8 +84,8 @@ export const weddingData: WeddingConfig = {
   location: "Sri Srinivasa Perumal Temple, Bodinayakanur, Theni District, Tamil Nadu",
   mapUrl: "https://maps.app.goo.gl/rW2wJotrbcJr9mES9",
   audio: "/assets/audio/wedding-bgm.mp3",
-  coupleImage: "/assets/images/couple-portrait.png",
-  secondaryCoupleImage: "/assets/images/couple-portrait3.png",
+  coupleImage: "/assets/images/couple-portrait.jpeg",
+  secondaryCoupleImage: "/assets/images/couple-portrait3.jpeg",
   weddingLogo: "/assets/images/wedding-logo.png",
   ceremonies: [
     {
@@ -98,7 +98,7 @@ export const weddingData: WeddingConfig = {
       day: "Tuesday",
       time: "7:35 PM – 8:35 PM",
       venue: "Soudamman Kovil Kalyana Mandapam",
-      address: "Souduman Koil Back Side, 1/1, Near IDBI Bank, Ammankulam, Bodinayakanur, Theni District – 625513",
+      address: "Soudamman Kovil Back Side, 1/1, Near IDBI Bank, Ammankulam, Bodinayakanur, Theni District – 625513",
       mapUrl: "https://maps.google.com/?q=Soudamman+Kovil+Kalyana+Mandapam+Bodinayakanur",
     },
     {
@@ -117,7 +117,7 @@ export const weddingData: WeddingConfig = {
   ],
   calendarEvent: {
     title: "Wedding of Rudran & Nandhini",
-    description: "Traditional South Indian Hindu Wedding of V. Rudran & G. Nandhini. Engagement & Ring Ceremony: Tuesday, 10 Nov 2026 (7:35 PM – 8:35 PM) at Soudamman Kovil Kalyana Mandapam, Bodinayakanur. Wedding Ceremony: Wednesday, 11 Nov 2026 (9:00 AM – 10:30 AM) at Sri Srinivasa Perumal Temple, Bodinayakanur.",
+    description: "Wedding of V. Rudran & G. Nandhini. Engagement & Ring Ceremony: Tuesday, 10 Nov 2026 (7:35 PM – 8:35 PM) at Soudamman Kovil Kalyana Mandapam, Bodinayakanur. Wedding Ceremony: Wednesday, 11 Nov 2026 (9:00 AM – 10:30 AM) at Sri Srinivasa Perumal Temple, Bodinayakanur.",
     location: "Sri Srinivasa Perumal Temple, Bodinayakanur, Theni District, Tamil Nadu",
     startDate: "20261111T033000Z", // 9:00 AM IST = 3:30 AM UTC
     endDate: "20261111T050000Z",   // 10:30 AM IST = 5:00 AM UTC

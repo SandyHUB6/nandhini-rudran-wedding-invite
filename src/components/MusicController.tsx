@@ -53,9 +53,12 @@ export const MusicController: React.FC<MusicControllerProps> = ({
     setIsMuted(!isMuted);
   };
 
+  const isFirstTriggerRef = useRef(false);
+
   // Triggered automatically once user clicks "OPEN INVITATION"
   useEffect(() => {
-    if (autoPlayTrigger && !isPlaying) {
+    if (autoPlayTrigger && !isFirstTriggerRef.current) {
+      isFirstTriggerRef.current = true;
       playAudio();
     }
   }, [autoPlayTrigger]);
@@ -73,12 +76,12 @@ export const MusicController: React.FC<MusicControllerProps> = ({
       />
 
       {/* Floating subtle music controller */}
-      <div className="fixed top-5 right-5 z-50 flex items-center gap-1.5 bg-[#2A050B]/85 backdrop-blur-md border border-[#C5A059]/40 hover:border-[#C5A059] px-3 py-2 rounded-full shadow-gold-subtle transition-all duration-300">
+      <div className="fixed top-4 sm:top-5 right-4 sm:right-5 z-50 flex items-center gap-1.5 bg-[#2A050B]/90 backdrop-blur-md border border-[#C5A059]/40 hover:border-[#C5A059] px-3.5 py-1.5 sm:py-2 rounded-full shadow-gold-subtle transition-all duration-300">
         {/* Play/Pause Button */}
         <button
           type="button"
           onClick={togglePlay}
-          className="flex items-center gap-2 text-[#FAF7F0] hover:text-[#F5DE9C] transition-colors p-1"
+          className="flex items-center gap-2 text-[#FAF7F0] hover:text-[#F5DE9C] transition-colors py-1 px-1.5 touch-manipulation"
           title={isPlaying ? 'Pause Wedding Music' : 'Play Wedding Music'}
           aria-label="Toggle Wedding Music"
         >
@@ -91,7 +94,7 @@ export const MusicController: React.FC<MusicControllerProps> = ({
                 <span className="w-[2px] bg-[#F5DE9C] rounded-full animate-[pulse_1.4s_infinite_0.2s]" style={{ height: '100%' }} />
                 <span className="w-[2px] bg-[#C5A059] rounded-full animate-[pulse_0.9s_infinite_0.4s]" style={{ height: '40%' }} />
               </div>
-              <Pause className="w-3 h-3 text-[#E5C578] ml-0.5 opacity-80" />
+              <Pause className="w-3.5 h-3.5 text-[#E5C578] ml-0.5 opacity-80" />
             </div>
           ) : (
             <div className="flex items-center gap-1.5 opacity-70 hover:opacity-100">
@@ -108,11 +111,11 @@ export const MusicController: React.FC<MusicControllerProps> = ({
         <button
           type="button"
           onClick={toggleMute}
-          className="text-[#C5A059]/80 hover:text-[#FAF7F0] p-1 transition-colors"
+          className="text-[#C5A059]/80 hover:text-[#FAF7F0] p-1.5 transition-colors touch-manipulation"
           title={isMuted ? 'Unmute' : 'Mute'}
           aria-label="Toggle Mute"
         >
-          {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
         </button>
       </div>
     </>

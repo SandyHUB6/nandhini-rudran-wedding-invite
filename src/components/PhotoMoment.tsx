@@ -21,8 +21,22 @@ interface AkshadhaiParticle {
 }
 
 export const PhotoMoment: React.FC = () => {
-  const [blessingCount, setBlessingCount] = useState<number>(42);
-  const [hasBlessed, setHasBlessed] = useState<boolean>(false);
+  const [blessingCount, setBlessingCount] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('rudran_nandhini_blessing_count');
+      if (saved) {
+        const parsed = parseInt(saved, 10);
+        if (!isNaN(parsed) && parsed >= 42) return parsed;
+      }
+    }
+    return 42;
+  });
+  const [hasBlessed, setHasBlessed] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('rudran_nandhini_has_blessed') === 'true';
+    }
+    return false;
+  });
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -68,8 +82,21 @@ export const PhotoMoment: React.FC = () => {
     // Play sacred temple bell blessing chime
     playTempleBellChime();
 
-    setBlessingCount((prev) => prev + 1);
+    setBlessingCount((prev) => {
+      const next = prev + 1;
+      try {
+        localStorage.setItem('rudran_nandhini_blessing_count', next.toString());
+      } catch {
+        // ignore quota / private mode storage error
+      }
+      return next;
+    });
     setHasBlessed(true);
+    try {
+      localStorage.setItem('rudran_nandhini_has_blessed', 'true');
+    } catch {
+      // ignore quota / private mode storage error
+    }
 
     const container = containerRef.current;
     if (!container) return;
