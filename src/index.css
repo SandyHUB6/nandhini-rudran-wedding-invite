@@ -52,6 +52,7 @@
   .text-gold-foil {
     background: linear-gradient(135deg, #FDECB6 0%, #D4AF37 30%, #F5DE9C 50%, #A47F28 75%, #F0D58C 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
   }
@@ -59,6 +60,7 @@
   .text-gold-subtle {
     background: linear-gradient(180deg, #F5DE9C 0%, #C5A059 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
