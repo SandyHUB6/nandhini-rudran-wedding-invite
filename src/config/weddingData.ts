@@ -84,8 +84,8 @@ export const weddingData: WeddingConfig = {
   location: "Sri Srinivasa Perumal Temple, Bodinayakanur, Theni District, Tamil Nadu",
   mapUrl: "https://maps.app.goo.gl/rW2wJotrbcJr9mES9",
   audio: "/assets/audio/wedding-bgm.mp3",
-  coupleImage: "/assets/images/couple-portrait.jpeg",
-  secondaryCoupleImage: "/assets/images/couple-portrait3.jpeg",
+  coupleImage: "/assets/images/couple-portrait3.jpeg",
+  secondaryCoupleImage: "/assets/images/couple-portrait.jpeg",
   weddingLogo: "/assets/images/wedding-logo.png",
   ceremonies: [
     {
